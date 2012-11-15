@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.alfresco.org/repo/db-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.alfresco.org/repo/db-schema db-schema.xsd" name="ALFRESCO" dbprefix="avm_" version="5026">
+  <validators>
+    <validator class="org.alfresco.util.schemacomp.validator.NameValidator">
+      <properties>
+        <property name="pattern">.*</property>
+      </properties>
+    </validator>
+    <validator class="org.alfresco.util.schemacomp.validator.SchemaVersionValidator"/>
+  </validators>
+  <objects>
+    <sequence name="AVM_NODES_SEQ"/>
+    <sequence name="AVM_STORE_PROPERTIES_SEQ"/>
+    <sequence name="AVM_STORES_SEQ"/>
+    <sequence name="AVM_VERSION_ROOTS_SEQ"/>
+    <table name="AVM_ASPECTS">
+      <columns>
+        <column name="NODE_ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="QNAME_ID" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_ASPECTS_PKEY">
+        <columnnames>
+          <columnname order="1">node_id</columnname>
+          <columnname order="2">qname_id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_NASP_QN">
+          <localcolumn>QNAME_ID</localcolumn>
+          <targettable>alf_qname</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_NASP_N">
+          <localcolumn>NODE_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_NASP_N" unique="false">
+          <columnnames>
+            <columnname>NODE_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_NASP_QN" unique="false">
+          <columnnames>
+            <columnname>QNAME_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_CHILD_ENTRIES">
+      <columns>
+        <column name="PARENT_ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LC_NAME" order="2">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME" order="3">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CHILD_ID" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_CHILD_ENTRIES_PKEY">
+        <validators>
+          <validator class="org.alfresco.util.schemacomp.validator.NameValidator">
+            <properties>
+              <property name="PATTERN">.*</property>
+            </properties>
+          </validator>
+        </validators>
+        <columnnames>
+          <columnname order="1">parent_id</columnname>
+          <columnname order="2">lc_name</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_CE_PARENT">
+          <localcolumn>PARENT_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_CE_CHILD">
+          <localcolumn>CHILD_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_CE_CHILD" unique="false">
+          <columnnames>
+            <columnname>CHILD_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_CE_PARENT" unique="false">
+          <columnnames>
+            <columnname>PARENT_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_AVM_CE_LC_NAME" unique="false">
+          <columnnames>
+            <columnname>LC_NAME</columnname>
+            <columnname>PARENT_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_HISTORY_LINKS">
+      <columns>
+        <column name="ANCESTOR" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCENDENT" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_HISTORY_LINKS_PKEY">
+        <columnnames>
+          <columnname order="1">ancestor</columnname>
+          <columnname order="2">descendent</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_HL_ANCESTOR">
+          <localcolumn>ANCESTOR</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_HL_DESC">
+          <localcolumn>DESCENDENT</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_HL_ANCESTOR" unique="false">
+          <columnnames>
+            <columnname>ANCESTOR</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_HL_DESC" unique="false">
+          <columnnames>
+            <columnname>DESCENDENT</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_AVM_HL_REVPK" unique="false">
+          <columnnames>
+            <columnname>DESCENDENT</columnname>
+            <columnname>ANCESTOR</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_MERGE_LINKS">
+      <columns>
+        <column name="MFROM" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MTO" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_MERGE_LINKS_PKEY">
+        <columnnames>
+          <columnname order="1">mfrom</columnname>
+          <columnname order="2">mto</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_ML_TO">
+          <localcolumn>MTO</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_ML_FROM">
+          <localcolumn>MFROM</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_ML_FROM" unique="false">
+          <columnnames>
+            <columnname>MFROM</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_ML_TO" unique="false">
+          <columnnames>
+            <columnname>MTO</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_NODE_PROPERTIES">
+      <columns>
+        <column name="NODE_ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACTUAL_TYPE_N" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PERSISTED_TYPE_N" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MULTI_VALUED" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="BOOLEAN_VALUE" order="5">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LONG_VALUE" order="6">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="FLOAT_VALUE" order="7">
+          <type>float</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DOUBLE_VALUE" order="8">
+          <type>float</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="STRING_VALUE" order="9">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="SERIALIZABLE_VALUE" order="10">
+          <type>blob</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="QNAME_ID" order="11">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_NODE_PROPERTIES_PKEY">
+        <columnnames>
+          <columnname order="1">node_id</columnname>
+          <columnname order="2">qname_id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_NPROP_QN">
+          <localcolumn>QNAME_ID</localcolumn>
+          <targettable>alf_qname</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_NPROP_N">
+          <localcolumn>NODE_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_NPROP_N" unique="false">
+          <columnnames>
+            <columnname>NODE_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_NPROP_QN" unique="false">
+          <columnnames>
+            <columnname>QNAME_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_NODES">
+      <columns>
+        <column name="ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CLASS_TYPE" order="2">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERS" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERSION_ID" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="GUID" order="5">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CREATOR" order="6">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="OWNER" order="7">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LASTMODIFIER" order="8">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CREATEDATE" order="9">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MODDATE" order="10">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACCESSDATE" order="11">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="IS_ROOT" order="12">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="STORE_NEW_ID" order="13">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACL_ID" order="14">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DELETEDTYPE" order="15">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LAYER_ID" order="16">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="INDIRECTION" order="17">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="INDIRECTION_VERSION" order="18">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PRIMARY_INDIRECTION" order="19">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="OPACITY" order="20">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CONTENT_URL" order="21">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MIME_TYPE" order="22">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ENCODING" order="23">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LENGTH" order="24">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_NODES_PKEY">
+        <columnnames>
+          <columnname order="1">id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_N_ACL">
+          <localcolumn>ACL_ID</localcolumn>
+          <targettable>alf_access_control_list</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_N_STORE">
+          <localcolumn>STORE_NEW_ID</localcolumn>
+          <targettable>avm_stores</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_N_ACL" unique="false">
+          <columnnames>
+            <columnname>ACL_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_N_STORE" unique="false">
+          <columnnames>
+            <columnname>STORE_NEW_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_AVM_N_PI" unique="false">
+          <columnnames>
+            <columnname>PRIMARY_INDIRECTION</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_STORE_PROPERTIES">
+      <columns>
+        <column name="ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="AVM_STORE_ID" order="2">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="QNAME_ID" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACTUAL_TYPE_N" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PERSISTED_TYPE_N" order="5">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MULTI_VALUED" order="6">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="BOOLEAN_VALUE" order="7">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="LONG_VALUE" order="8">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="FLOAT_VALUE" order="9">
+          <type>float</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DOUBLE_VALUE" order="10">
+          <type>float</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="STRING_VALUE" order="11">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="SERIALIZABLE_VALUE" order="12">
+          <type>blob</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_STORE_PROPERTIES_PKEY">
+        <columnnames>
+          <columnname order="1">id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_SPROP_QNAME">
+          <localcolumn>QNAME_ID</localcolumn>
+          <targettable>alf_qname</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_SPROP_STORE">
+          <localcolumn>AVM_STORE_ID</localcolumn>
+          <targettable>avm_stores</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_SPROP_QNAME" unique="false">
+          <columnnames>
+            <columnname>QNAME_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_SPROP_STORE" unique="false">
+          <columnnames>
+            <columnname>AVM_STORE_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_STORES">
+      <columns>
+        <column name="ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERS" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME" order="3">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NEXT_VERSION_ID" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CURRENT_ROOT_ID" order="5">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACL_ID" order="6">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_STORES_PKEY">
+        <columnnames>
+          <columnname order="1">id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_S_ACL">
+          <localcolumn>ACL_ID</localcolumn>
+          <targettable>alf_access_control_list</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_S_ROOT">
+          <localcolumn>CURRENT_ROOT_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="AVM_STORES_NAME_KEY" unique="true">
+          <columnnames>
+            <columnname>NAME</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_S_ACL" unique="false">
+          <columnnames>
+            <columnname>ACL_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_S_ROOT" unique="false">
+          <columnnames>
+            <columnname>CURRENT_ROOT_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_VERSION_LAYERED_NODE_ENTRY">
+      <columns>
+        <column name="VERSION_ROOT_ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MD5SUM" order="2">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PATH" order="3">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_VERSION_LAYERED_NODE_ENTRY_PKEY">
+        <columnnames>
+          <columnname order="1">version_root_id</columnname>
+          <columnname order="2">md5sum</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_VLNE_VR">
+          <localcolumn>VERSION_ROOT_ID</localcolumn>
+          <targettable>avm_version_roots</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_AVM_VLNE_VR" unique="false">
+          <columnnames>
+            <columnname>VERSION_ROOT_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="AVM_VERSION_ROOTS">
+      <columns>
+        <column name="ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERSION_ID" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="AVM_STORE_ID" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CREATE_DATE" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CREATOR" order="5">
+          <type>varchar2</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ROOT_ID" order="6">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="TAG" order="7">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION" order="8">
+          <type>varchar2</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="AVM_VERSION_ROOTS_PKEY">
+        <columnnames>
+          <columnname order="1">id</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_AVM_VR_ROOT">
+          <localcolumn>ROOT_ID</localcolumn>
+          <targettable>avm_nodes</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_AVM_VR_STORE">
+          <localcolumn>AVM_STORE_ID</localcolumn>
+          <targettable>avm_stores</targettable>
+          <targetcolumn>id</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="AVM_VERSION_ROOTS_VERSION_ID_AVM_STORE_ID_KEY" unique="true">
+          <columnnames>
+            <columnname>VERSION_ID</columnname>
+            <columnname>AVM_STORE_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_VR_ROOT" unique="false">
+          <columnnames>
+            <columnname>ROOT_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_AVM_VR_STORE" unique="false">
+          <columnnames>
+            <columnname>AVM_STORE_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_AVM_VR_REVUQ" unique="false">
+          <columnnames>
+            <columnname>AVM_STORE_ID</columnname>
+            <columnname>VERSION_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_AVM_VR_VERSION" unique="false">
+          <columnnames>
+            <columnname>VERSION_ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+  </objects>
+</schema>

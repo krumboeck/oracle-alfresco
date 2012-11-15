@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alfresco.permissions.insert">
+
+    <insert id="insert_Acl" parameterType="Acl">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_access_control_list_seq.NEXTVAL as value from dual          
+        </selectKey>
+        
+         insert into alf_access_control_list
+            (id, version, acl_id, latest, acl_version, inherits, inherits_from,
+             type, inherited_acl, is_versioned, requires_version, acl_change_set)
+        values
+            (#{id jdbcType=BIGINT}, #{version jdbcType=BIGINT}, #{aclId jdbcType=VARCHAR}, #{latest jdbcType=BIT}, #{aclVersion jdbcType=BIGINT}, #{inherits jdbcType=BIT}, #{inheritsFrom jdbcType=BIGINT},
+             #{type jdbcType=INTEGER}, #{inheritedAcl jdbcType=BIGINT}, #{isVersioned jdbcType=BIT}, #{requiresVersion jdbcType=BIT}, #{aclChangeSet jdbcType=BIGINT})
+
+        
+    </insert>
+    
+    <insert id="insert_AclMember" parameterType="AclMember">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_acl_member_seq.NEXTVAL as value from dual           
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_AclMember_Sequence"/>
+        
+    </insert>
+    
+    <insert id="insert_AclChangeSet" parameterType="AclChangeSet">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_acl_change_set_seq.NEXTVAL as value from dual          
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_AclChangeSet_Sequence"/>
+        
+    </insert>
+    
+    <insert id="insert_Ace" parameterType="Ace">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_access_control_entry_seq.NEXTVAL as value from dual         
+        </selectKey>        
+		insert into alf_access_control_entry
+            (id, version, permission_id, authority_id, allowed, applies, context_id)
+        values
+            (#{id jdbcType=BIGINT}, #{version jdbcType=BIGINT}, #{permissionId jdbcType=BIGINT}, #{authorityId jdbcType=BIGINT}, #{allowed jdbcType=BIT}, #{applies jdbcType=INTEGER}, #{contextId jdbcType=BIGINT})        
+    </insert>
+    
+    <insert id="insert_AceContext" parameterType="AceContext">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_ace_context_seq.NEXTVAL as value from dual           
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_AceContext_Sequence"/>
+        
+    </insert>
+    
+    <insert id="insert_Permission" parameterType="Permission">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_permission_seq.NEXTVAL as value from dual            
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_Permission_Sequence"/>
+        
+    </insert>
+    
+    <insert id="insert_Authority" parameterType="Authority">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_authority_seq.NEXTVAL as value from dual         
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_Authority_Sequence"/>
+        
+    </insert>
+    
+    <insert id="insert_AuthorityAlias" parameterType="AuthorityAlias">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select alf_authority_alias_seq.NEXTVAL as value from dual           
+        </selectKey>
+        
+        <include refid="alfresco.permissions.insert_AuthorityAlias_Sequence"/>
+        
+    </insert>
+    
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alfresco.lock.insert">
+
+    <insert id="insert_LockResource" parameterType="LockResource" >
+    
+       <selectKey resultType="long" keyProperty="id" order="BEFORE" >         
+			select alf_lock_resource_seq.NEXTVAL as value from dual
+        </selectKey>
+        
+        insert into alf_lock_resource (id, version, qname_ns_id, qname_localname)
+        values (#{id}, #{version}, #{qnameNamespaceId}, lower(#{qnameLocalName}))
+            
+    </insert>
+
+    <insert id="insert_Lock" parameterType="Lock" >
+    
+       <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+	   select alf_lock_seq.NEXTVAL as value from dual          
+        </selectKey>
+        
+        insert into alf_lock (id, version, shared_resource_id, excl_resource_id, lock_token, start_time, expiry_time)
+        values (#{id}, #{version}, #{sharedResourceId}, #{exclusiveResourceId}, lower(#{lockToken}), #{startTime}, #{expiryTime})
+        
+    </insert>
+
+</mapper>
