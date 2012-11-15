@@ -11,7 +11,8 @@ License
 GPL
 
 
-How to build
-------------
-
+Building the AMP
+----------------
+cd src
+zip -r ../oracle-alfresco-4.2_b.amp *
 
