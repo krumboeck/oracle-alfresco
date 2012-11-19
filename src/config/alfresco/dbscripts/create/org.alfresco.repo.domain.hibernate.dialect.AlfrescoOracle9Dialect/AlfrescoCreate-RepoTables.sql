@@ -7,25 +7,25 @@
 
 create table ALF_APPLIED_PATCH
 (
-  ID                VARCHAR2(64) not null,
-  DESCRIPTION       VARCHAR2(2048),
-  FIXES_FROM_SCHEMA NUMBER,
-  FIXES_TO_SCHEMA   NUMBER,
-  APPLIED_TO_SCHEMA NUMBER,
-  TARGET_SCHEMA     NUMBER,
+  ID                VARCHAR2(64 CHAR) not null,
+  DESCRIPTION       VARCHAR2(2048 CHAR),
+  FIXES_FROM_SCHEMA NUMBER(10),
+  FIXES_TO_SCHEMA   NUMBER(10),
+  APPLIED_TO_SCHEMA NUMBER(10),
+  TARGET_SCHEMA     NUMBER(10),
   APPLIED_ON_DATE   TIMESTAMP(6),
-  APPLIED_TO_SERVER VARCHAR2(64),
-  WAS_EXECUTED      NUMBER,
-  SUCCEEDED         NUMBER,
-  REPORT            VARCHAR2(2048),
+  APPLIED_TO_SERVER VARCHAR2(64 CHAR),
+  WAS_EXECUTED      NUMBER(1),
+  SUCCEEDED         NUMBER(1),
+  REPORT            VARCHAR2(2048 CHAR),
   PRIMARY KEY (id)
 );
 
 create table ALF_NAMESPACE
 (
-  ID      NUMBER not null,
-  VERSION NUMBER not null,
-  URI     VARCHAR2(100) not null,
+  ID      NUMBER(19) not null,
+  VERSION NUMBER(19) not null,
+  URI     VARCHAR2(100 CHAR) not null,
    PRIMARY KEY (id),
    constraint uri UNIQUE (uri)  
 );
@@ -33,10 +33,10 @@ CREATE SEQUENCE ALF_NAMESPACE_SEQ START WITH 1 INCREMENT BY 1;
 
 create table ALF_QNAME
 (
-  ID         NUMBER not null,
-  VERSION    NUMBER not null,
-  NS_ID      NUMBER not null,
-  LOCAL_NAME VARCHAR2(200) not null,
+  ID         NUMBER(19) not null,
+  VERSION    NUMBER(19) not null,
+  NS_ID      NUMBER(19) not null,
+  LOCAL_NAME VARCHAR2(200 CHAR) not null,
   PRIMARY KEY (id),
   constraint ns_id UNIQUE (ns_id, local_name),  
   CONSTRAINT fk_alf_qname_ns FOREIGN KEY (ns_id) REFERENCES alf_namespace (id)
@@ -251,7 +251,7 @@ create table ALF_NODE
   UUID           VARCHAR2(36 CHAR) not null,
   TRANSACTION_ID NUMBER(19) not null,
   TYPE_QNAME_ID  NUMBER(19) not null,
-  locale_id NUMBER NOT NULL,
+  locale_id      NUMBER(19) NOT NULL,
   ACL_ID         NUMBER(19),
   AUDIT_CREATOR  VARCHAR2(255 CHAR),
   AUDIT_CREATED  VARCHAR2(30 CHAR),
