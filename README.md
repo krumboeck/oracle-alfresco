@@ -36,9 +36,9 @@ for example:
   CREATE USER alfresco DEFAULT TABLESPACE alfresco TEMPORARY TABLESPACE temp IDENTIFIED BY alfresco;
   GRANT ALL PRIVILEGES TO alfresco; 
 
-2. Ensure that the alfresco user has the required privileges to create and modify tables. This can be removed once the server has started, but may be required during upgrades.
+2.Ensure that the alfresco user has the required privileges to create and modify tables. This can be removed once the server has started, but may be required during upgrades.
 
-3. Override following properties in your alfresco-global.properties: 
+3.Override following properties in your alfresco-global.properties: 
 
 db.driver=oracle.jdbc.OracleDriver
 db.name=alfresco
