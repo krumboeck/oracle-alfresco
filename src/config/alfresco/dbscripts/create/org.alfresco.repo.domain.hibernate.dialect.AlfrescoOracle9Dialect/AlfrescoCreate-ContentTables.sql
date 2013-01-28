@@ -9,9 +9,9 @@
 
 CREATE TABLE alf_mimetype
 (
-   id number(19) NOT NULL,
-   version number(10) NOT NULL,
-   mimetype_str VARCHAR2(100 CHAR) NOT NULL,
+   id number NOT NULL,
+   version number NOT NULL,
+   mimetype_str VARCHAR2(100) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE (mimetype_str)
 );
@@ -19,9 +19,9 @@ CREATE SEQUENCE alf_mimetype_seq START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE alf_encoding
 (
-   id number(19) NOT NULL,
-   version number(10) NOT NULL,
-   encoding_str VARCHAR2(100 CHAR) NOT NULL,
+   id number NOT NULL,
+   version number NOT NULL,
+   encoding_str VARCHAR2(100) NOT NULL,
    PRIMARY KEY (id),
    UNIQUE (encoding_str)
 );
@@ -33,12 +33,12 @@ CREATE SEQUENCE alf_encoding_seq START WITH 1 INCREMENT BY 1;
 DROP TABLE alf_content_url;                     --(optional)
 CREATE TABLE alf_content_url
 (
-   id number(19) NOT NULL,
-   content_url VARCHAR2(255 CHAR) NOT NULL,
-   content_url_short VARCHAR2(12 CHAR) NOT NULL,
-   content_url_crc number(19) NOT NULL,
-   content_size number(19) NOT NULL,
-   orphan_time number(19) NULL,
+   id number NOT NULL,
+   content_url VARCHAR2(255) NOT NULL,
+   content_url_short VARCHAR2(12) NOT NULL,
+   content_url_crc number NOT NULL,
+   content_size number NOT NULL,
+   orphan_time number NULL,
     CONSTRAINT idx_alf_cont_url_crc  UNIQUE(content_url_short, content_url_crc),
    PRIMARY KEY (id)
 );
@@ -47,12 +47,12 @@ CREATE SEQUENCE alf_content_url_seq START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE alf_content_data
 (
-   id number(19) NOT NULL,
-   version number(10) NOT NULL,
-   content_url_id number(19),
-   content_mimetype_id number(19),
-   content_encoding_id number(19),
-   content_locale_id number(19),
+   id number NOT NULL,
+   version number NOT NULL,
+   content_url_id number,
+   content_mimetype_id number,
+   content_encoding_id number,
+   content_locale_id number,
    CONSTRAINT fk_alf_cont_url FOREIGN KEY (content_url_id) REFERENCES alf_content_url (id),
    CONSTRAINT fk_alf_cont_mim FOREIGN KEY (content_mimetype_id) REFERENCES alf_mimetype (id),
    CONSTRAINT fk_alf_cont_enc FOREIGN KEY (content_encoding_id) REFERENCES alf_encoding (id),

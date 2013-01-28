@@ -8,84 +8,90 @@
 
 
     create table avm_aspects (
-        node_id number(19) not null,
-        qname_id number(19) not null,
+        node_id number not null,
+        qname_id number not null,
         primary key (node_id, qname_id)
     );
+	
+CREATE SEQUENCE avm_aspects_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_child_entries (
-        parent_id number(19) not null,
-        name varchar2(160 CHAR) not null,
-        child_id number(19) not null,
+        parent_id number not null,
+        name varchar2(160) not null,
+        child_id number not null,
         primary key (parent_id, name)
     ) ;
+CREATE SEQUENCE avm_child_entries_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_history_links (
-        ancestor number(19) not null,
-        descendent number(19) not null,
+        ancestor number not null,
+        descendent number not null,
         primary key (ancestor, descendent)
     ) ;
+CREATE SEQUENCE avm_history_links_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_merge_links (
-        mfrom number(19) not null,
-        mto number(19) not null,
+        mfrom number not null,
+        mto number not null,
         primary key (mfrom, mto)
     ) ;
+CREATE SEQUENCE avm_merge_links_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_node_properties (
-        node_id number(19) not null,
-        actual_type_n number(10) not null,
-        persisted_type_n number(10) not null,
-        multi_valued number(1) not null,
-        boolean_value number(1),
-        long_value number(19),
+        node_id number not null,
+        actual_type_n number not null,
+        persisted_type_n number not null,
+        multi_valued number not null,
+        boolean_value number,
+        long_value number,
         float_value FLOAT,
         double_value FLOAT,
         string_value VARCHAR2(1024 CHAR),
         serializable_value blob,
-        qname_id number(19) not null,
+        qname_id number not null,
         primary key (node_id, qname_id)
     ) ;
+CREATE SEQUENCE avm_node_properties_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_nodes (
-        id number(19) not null,
-        class_type varchar2(20 CHAR) not null,
-        vers number(10) not null,
-        version_id number(19) not null,
-        guid varchar2(36 CHAR),
-        creator varchar2(255 CHAR) not null,
-        owner varchar2(255 CHAR) not null,
-        lastModifier varchar2(255 CHAR) not null,
-        createDate number(19) not null,
-        modDate number(19) not null,
-        accessDate number(19) not null,
-        is_root number(1),
-        store_new_id number(19),
-        acl_id number(19),
-        deletedType number(10),
-        layer_id number(19),
+        id number not null,
+        class_type varchar2(20) not null,
+        vers number not null,
+        version_id number not null,
+        guid varchar2(36),
+        creator varchar2(255) not null,
+        owner varchar2(255) not null,
+        lastModifier varchar2(255) not null,
+        createDate number not null,
+        modDate number not null,
+        accessDate number not null,
+        is_root number,
+        store_new_id number,
+        acl_id number,
+        deletedType number,
+        layer_id number,
         indirection VARCHAR2(1024 CHAR),
-        indirection_version number(10),
-        primary_indirection number(10),
-        opacity number(19),
-        content_url varchar2(128 CHAR),
-        mime_type varchar2(100 CHAR),
-        encoding varchar2(16 CHAR),
-        length number(19),
+        indirection_version number,
+        primary_indirection number,
+        opacity number,
+        content_url varchar2(128),
+        mime_type varchar2(100),
+        encoding varchar2(16),
+        length number,
         primary key (id)
     ) ;
 CREATE SEQUENCE avm_nodes_seq START WITH 1 INCREMENT BY 1;
 
 
     create table avm_store_properties (
-        id number(19) not null,
-        avm_store_id number(19),
-        qname_id number(19) not null,
-        actual_type_n number(10) not null,
-        persisted_type_n number(10) not null,
-        multi_valued number(1) not null,
-        boolean_value number(1),
-        long_value number(19),
+        id number not null,
+        avm_store_id number,
+        qname_id number not null,
+        actual_type_n number not null,
+        persisted_type_n number not null,
+        multi_valued number not null,
+        boolean_value number,
+        long_value number,
         float_value FLOAT,
         double_value FLOAT,
         string_value VARCHAR2(1024 CHAR),
@@ -96,31 +102,33 @@ CREATE SEQUENCE avm_store_properties_seq START WITH 1 INCREMENT BY 1;
 
 
     create table avm_stores (
-        id number(19) not null,
-        vers number(10) not null,
-        name varchar2(255 CHAR) unique,
-        next_version_id number(19) not null,
-        current_root_id number(19),
-        acl_id number(19),
+        id number not null,
+        vers number not null,
+        name varchar2(255) unique,
+        next_version_id number not null,
+        current_root_id number,
+        acl_id number,
         primary key (id)
     ) ;
 CREATE SEQUENCE avm_stores_seq START WITH 1 INCREMENT BY 1;
 
     create table avm_version_layered_node_entry (
-        version_root_id number(19) not null,
-        md5sum varchar2(32 CHAR) not null,
+        version_root_id number not null,
+        md5sum varchar2(32) not null,
         path VARCHAR2(1024 CHAR),
         primary key (version_root_id, md5sum)
     ) ;
+CREATE SEQUENCE avm_ver_l_node_entry_seq START WITH 1 INCREMENT BY 1;
+
 
     create table avm_version_roots (
-        id number(19) not null,
-        version_id number(19),
-        avm_store_id number(19) not null,
-        create_date number(19) not null,
-        creator varchar2(255 CHAR) not null,
-        root_id number(19) not null,
-        tag varchar2(255 CHAR),
+        id number not null,
+        version_id number,
+        avm_store_id number not null,
+        create_date number not null,
+        creator varchar2(255) not null,
+        root_id number not null,
+        tag varchar2(255),
         description VARCHAR2(1024 CHAR),
         primary key (id),
         unique (version_id, avm_store_id)

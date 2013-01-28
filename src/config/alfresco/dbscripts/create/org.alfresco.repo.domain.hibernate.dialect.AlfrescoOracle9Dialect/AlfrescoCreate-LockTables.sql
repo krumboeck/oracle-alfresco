@@ -7,10 +7,10 @@
 
 CREATE TABLE alf_lock_resource
 (
-   id number(19) NOT NULL,
-   version number(19) NOT NULL,
-   qname_ns_id number(19) NOT NULL,
-   qname_localname VARCHAR2(255 CHAR) NOT NULL
+   id number NOT NULL,
+   version number NOT NULL,
+   qname_ns_id number NOT NULL,
+   qname_localname VARCHAR2(255) NOT NULL
 );
 alter table alf_lock_resource
   add constraint pk_alr_id primary key (ID);
@@ -23,13 +23,13 @@ CREATE SEQUENCE alf_lock_resource_seq START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE alf_lock
 (
-   id number(19) NOT NULL,
-   version number(10) NOT NULL,
-   shared_resource_id number(19) NOT NULL,
-   excl_resource_id number(19) NOT NULL,
-   lock_token VARCHAR2(36 CHAR) NOT NULL,
-   start_time number(19) NOT NULL,
-   expiry_time number(19) NOT NULL
+   id number NOT NULL,
+   version number NOT NULL,
+   shared_resource_id number NOT NULL,
+   excl_resource_id number NOT NULL,
+   lock_token VARCHAR2(36) NOT NULL,
+   start_time number NOT NULL,
+   expiry_time number NOT NULL
 );
 alter table alf_lock
   add constraint pk_alf_lock_id primary key (ID);

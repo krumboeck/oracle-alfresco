@@ -8,10 +8,10 @@
 
 CREATE TABLE alf_usage_delta
 (
-    id number(19) not null,
-    version number(10) NOT NULL,
-    node_id number(19) NOT NULL,
-    delta_size number(19) NOT NULL,
+    id number not null,
+    version number NOT NULL,
+    node_id number NOT NULL,
+    delta_size number NOT NULL,
     PRIMARY KEY (id),   
     CONSTRAINT fk_alf_usaged_n FOREIGN KEY (node_id) REFERENCES alf_node (id)
 ); -- (optional)
