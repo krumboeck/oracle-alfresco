@@ -65,4 +65,13 @@ for example: oracle\product\10.2.0\db_1\jdbc\lib\ to \tomcat\lib
 
     * Note: for performance reasons it is recommended that you use the 10g JDBC drivers, even if your Oracle server is 9i. 
 
+Using with Alfresco Maven SDK 1.0
+---------------------------------
+
+To use this with the Alfresco Maven SDK 1.0 (https://artifacts.alfresco.com/nexus/content/repositories/alfresco-docs/alfresco-lifecycle-aggregator/latest/index.html) follow the below instructions:
+
+1. Download the code from here
+2. Copy the contents of `oracle-alfresco/src/config` to `(your parent Alfresco module)/alfresco/src/main/webapp/WEB-INF/classes/alfresco`
+
+This will package the Oracle items into the appropriate area after running a Maven build (i.e. your WAR file will be packaged appropriately).
  
