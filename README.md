@@ -15,9 +15,9 @@ GPLv2
 
 Supported Alfresco Releases
 ---------------------------
-4.0_b (branch)
-4.2_b (branch)
-4.2_d (master)
+* 4.0_b (branch)
+* 4.2_b (branch)
+* 4.2_d (master)
 
 
 Building the AMP
