@@ -1,2668 +1,2668 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.alfresco.org/repo/db-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.alfresco.org/repo/db-schema db-schema.xsd" name="ALFRESCO" dbprefix="jbpm_" version="5026">
+<schema xmlns="http://www.alfresco.org/repo/db-schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.alfresco.org/repo/db-schema db-schema.xsd" name="" dbprefix="jbpm_" version="5026">
   <validators>
     <validator class="org.alfresco.util.schemacomp.validator.NameValidator">
       <properties>
-        <property name="pattern">.*</property>
+        <property name="PATTERN">.*</property>
       </properties>
     </validator>
     <validator class="org.alfresco.util.schemacomp.validator.SchemaVersionValidator"/>
   </validators>
   <objects>
-    <table name="jbpm_action">
+    <table name="JBPM_ACTION">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class" order="2">
-          <type>char</type>
+        <column name="CLASS" order="2">
+          <type>char(1 char)</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="ispropagationallowed_" order="4">
+        <column name="ISPROPAGATIONALLOWED_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actionexpression_" order="5">
-          <type>varchar2</type>
+        <column name="ACTIONEXPRESSION_" order="5">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isasync_" order="6">
+        <column name="ISASYNC_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="referencedaction_" order="7">
+        <column name="REFERENCEDACTION_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actiondelegation_" order="8">
+        <column name="ACTIONDELEGATION_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="event_" order="9">
+        <column name="EVENT_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="10">
+        <column name="PROCESSDEFINITION_" order="10">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="timername_" order="11">
-          <type>varchar2</type>
+        <column name="TIMERNAME_" order="11">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="duedate_" order="12">
-          <type>varchar2</type>
+        <column name="DUEDATE_" order="12">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="repeat_" order="13">
-          <type>varchar2</type>
+        <column name="REPEAT_" order="13">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transitionname_" order="14">
-          <type>varchar2</type>
+        <column name="TRANSITIONNAME_" order="14">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="timeraction_" order="15">
+        <column name="TIMERACTION_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="expression_" order="16">
+        <column name="EXPRESSION_" order="16">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="eventindex_" order="17">
+        <column name="EVENTINDEX_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="exceptionhandler_" order="18">
+        <column name="EXCEPTIONHANDLER_" order="18">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="exceptionhandlerindex_" order="19">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_action_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_crtetimeract_ta">
-          <localcolumn>timeraction_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_action_refact">
-          <localcolumn>referencedaction_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_action_actndel">
-          <localcolumn>actiondelegation_</localcolumn>
-          <targettable>jbpm_delegation</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_action_event">
-          <localcolumn>event_</localcolumn>
-          <targettable>jbpm_event</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_action_expthdl">
-          <localcolumn>exceptionhandler_</localcolumn>
-          <targettable>jbpm_exceptionhandler</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_action_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_action_actndel" unique="false">
-          <columnnames>
-            <columnname>actiondelegation_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_action_event" unique="false">
-          <columnnames>
-            <columnname>event_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_action_expthdl" unique="false">
-          <columnnames>
-            <columnname>exceptionhandler_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_action_procdef" unique="false">
-          <columnnames>
-            <columnname>processdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_action_refact" unique="false">
-          <columnnames>
-            <columnname>referencedaction_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_crtetimeract_ta" unique="false">
-          <columnnames>
-            <columnname>timeraction_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_bytearray">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="name_" order="2">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="filedefinition_" order="3">
+        <column name="EXCEPTIONHANDLERINDEX_" order="19">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_bytearray_pkey">
+      <primarykey name="JBPM_ACTION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_bytearr_fildef">
-          <localcolumn>filedefinition_</localcolumn>
-          <targettable>jbpm_moduledefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_CRTETIMERACT_TA">
+          <localcolumn>TIMERACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_ACTION_REFACT">
+          <localcolumn>REFERENCEDACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_ACTION_ACTNDEL">
+          <localcolumn>ACTIONDELEGATION_</localcolumn>
+          <targettable>JBPM_DELEGATION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_ACTION_EVENT">
+          <localcolumn>EVENT_</localcolumn>
+          <targettable>JBPM_EVENT</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_ACTION_EXPTHDL">
+          <localcolumn>EXCEPTIONHANDLER_</localcolumn>
+          <targettable>JBPM_EXCEPTIONHANDLER</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_ACTION_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_bytearr_fildef" unique="false">
+        <index name="FK_ACTION_ACTNDEL" unique="false">
           <columnnames>
-            <columnname>filedefinition_</columnname>
+            <columnname>ACTIONDELEGATION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_ACTION_EVENT" unique="false">
+          <columnnames>
+            <columnname>EVENT_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_ACTION_EXPTHDL" unique="false">
+          <columnnames>
+            <columnname>EXCEPTIONHANDLER_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_ACTION_PROCDEF" unique="false">
+          <columnnames>
+            <columnname>PROCESSDEFINITION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_ACTION_REFACT" unique="false">
+          <columnnames>
+            <columnname>REFERENCEDACTION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_CRTETIMERACT_TA" unique="false">
+          <columnnames>
+            <columnname>TIMERACTION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_byteblock">
+    <table name="JBPM_BYTEARRAY">
       <columns>
-        <column name="processfile_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="bytes_" order="2">
-          <type>blob</type>
+        <column name="NAME_" order="2">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="index_" order="3">
+        <column name="FILEDEFINITION_" order="3">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_BYTEARRAY_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_BYTEARR_FILDEF">
+          <localcolumn>FILEDEFINITION_</localcolumn>
+          <targettable>JBPM_MODULEDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_BYTEARR_FILDEF" unique="false">
+          <columnnames>
+            <columnname>FILEDEFINITION_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_BYTEBLOCK">
+      <columns>
+        <column name="PROCESSFILE_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="BYTES_" order="2">
+          <type>raw(1024)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="INDEX_" order="3">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_byteblock_pkey">
+      <primarykey name="JBPM_BYTEBLOCK_PKEY">
         <columnnames>
-          <columnname order="1">processfile_</columnname>
-          <columnname order="2">index_</columnname>
+          <columnname order="1">PROCESSFILE_</columnname>
+          <columnname order="2">INDEX_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_byteblock_file">
-          <localcolumn>processfile_</localcolumn>
-          <targettable>jbpm_bytearray</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_BYTEBLOCK_FILE">
+          <localcolumn>PROCESSFILE_</localcolumn>
+          <targettable>JBPM_BYTEARRAY</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_byteblock_file" unique="false">
+        <index name="FK_BYTEBLOCK_FILE" unique="false">
           <columnnames>
-            <columnname>processfile_</columnname>
+            <columnname>PROCESSFILE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_comment">
+    <table name="JBPM_COMMENT">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="2">
+        <column name="VERSION_" order="2">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actorid_" order="3">
-          <type>varchar2</type>
+        <column name="ACTORID_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="time_" order="4">
-          <type>timestamp</type>
+        <column name="TIME_" order="4">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="message_" order="5">
+        <column name="MESSAGE_" order="5">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="token_" order="6">
+        <column name="TOKEN_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskinstance_" order="7">
+        <column name="TASKINSTANCE_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="tokenindex_" order="8">
+        <column name="TOKENINDEX_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskinstanceindex_" order="9">
+        <column name="TASKINSTANCEINDEX_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_comment_pkey">
+      <primarykey name="JBPM_COMMENT_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_comment_tsk">
-          <localcolumn>taskinstance_</localcolumn>
-          <targettable>jbpm_taskinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_COMMENT_TSK">
+          <localcolumn>TASKINSTANCE_</localcolumn>
+          <targettable>JBPM_TASKINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_comment_token">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_COMMENT_TOKEN">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_comment_token" unique="false">
+        <index name="FK_COMMENT_TOKEN" unique="false">
           <columnnames>
-            <columnname>token_</columnname>
+            <columnname>TOKEN_</columnname>
           </columnnames>
         </index>
-        <index name="fk_comment_tsk" unique="false">
+        <index name="FK_COMMENT_TSK" unique="false">
           <columnnames>
-            <columnname>taskinstance_</columnname>
+            <columnname>TASKINSTANCE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_decisionconditions">
+    <table name="JBPM_DECISIONCONDITIONS">
       <columns>
-        <column name="decision_" order="1">
+        <column name="DECISION_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transitionname_" order="2">
-          <type>varchar2</type>
+        <column name="TRANSITIONNAME_" order="2">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="expression_" order="3">
-          <type>varchar2</type>
+        <column name="EXPRESSION_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="index_" order="4">
+        <column name="INDEX_" order="4">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_decisionconditions_pkey">
+      <primarykey name="JBPM_DECISIONCONDITIONS_PKEY">
         <columnnames>
-          <columnname order="1">decision_</columnname>
-          <columnname order="2">index_</columnname>
+          <columnname order="1">DECISION_</columnname>
+          <columnname order="2">INDEX_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_deccond_dec">
-          <localcolumn>decision_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_DECCOND_DEC">
+          <localcolumn>DECISION_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_deccond_dec" unique="false">
+        <index name="FK_DECCOND_DEC" unique="false">
           <columnnames>
-            <columnname>decision_</columnname>
+            <columnname>DECISION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_delegation">
+    <table name="JBPM_DELEGATION">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="classname_" order="2">
+        <column name="CLASSNAME_" order="2">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="configuration_" order="3">
+        <column name="CONFIGURATION_" order="3">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="configtype_" order="4">
-          <type>varchar2</type>
+        <column name="CONFIGTYPE_" order="4">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="5">
+        <column name="PROCESSDEFINITION_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_delegation_pkey">
+      <primarykey name="JBPM_DELEGATION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_delegation_prcd">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_DELEGATION_PRCD">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_delegation_prcd" unique="false">
+        <index name="FK_DELEGATION_PRCD" unique="false">
           <columnnames>
-            <columnname>processdefinition_</columnname>
+            <columnname>PROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_event">
+    <table name="JBPM_EVENT">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="eventtype_" order="2">
-          <type>varchar2</type>
+        <column name="EVENTTYPE_" order="2">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="type_" order="3">
-          <type>char</type>
+        <column name="TYPE_" order="3">
+          <type>char(1 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelement_" order="4">
+        <column name="GRAPHELEMENT_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="5">
+        <column name="PROCESSDEFINITION_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="node_" order="6">
+        <column name="NODE_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transition_" order="7">
+        <column name="TRANSITION_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="task_" order="8">
+        <column name="TASK_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_event_pkey">
+      <primarykey name="JBPM_EVENT_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_event_node">
-          <localcolumn>node_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_EVENT_NODE">
+          <localcolumn>NODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_event_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_EVENT_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_event_task">
-          <localcolumn>task_</localcolumn>
-          <targettable>jbpm_task</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_EVENT_TASK">
+          <localcolumn>TASK_</localcolumn>
+          <targettable>JBPM_TASK</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_event_trans">
-          <localcolumn>transition_</localcolumn>
-          <targettable>jbpm_transition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_EVENT_TRANS">
+          <localcolumn>TRANSITION_</localcolumn>
+          <targettable>JBPM_TRANSITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_event_node" unique="false">
+        <index name="FK_EVENT_NODE" unique="false">
           <columnnames>
-            <columnname>node_</columnname>
+            <columnname>NODE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_event_procdef" unique="false">
+        <index name="FK_EVENT_PROCDEF" unique="false">
           <columnnames>
-            <columnname>processdefinition_</columnname>
+            <columnname>PROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_event_task" unique="false">
+        <index name="FK_EVENT_TASK" unique="false">
           <columnnames>
-            <columnname>task_</columnname>
+            <columnname>TASK_</columnname>
           </columnnames>
         </index>
-        <index name="fk_event_trans" unique="false">
+        <index name="FK_EVENT_TRANS" unique="false">
           <columnnames>
-            <columnname>transition_</columnname>
+            <columnname>TRANSITION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_exceptionhandler">
+    <table name="JBPM_EXCEPTIONHANDLER">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="exceptionclassname_" order="2">
+        <column name="EXCEPTIONCLASSNAME_" order="2">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="type_" order="3">
-          <type>char</type>
+        <column name="TYPE_" order="3">
+          <type>char(1 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelement_" order="4">
+        <column name="GRAPHELEMENT_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="5">
+        <column name="PROCESSDEFINITION_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelementindex_" order="6">
+        <column name="GRAPHELEMENTINDEX_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="node_" order="7">
+        <column name="NODE_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transition_" order="8">
+        <column name="TRANSITION_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="task_" order="9">
+        <column name="TASK_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_exceptionhandler_pkey">
+      <primarykey name="JBPM_EXCEPTIONHANDLER_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys/>
       <indexes/>
     </table>
-    <table name="jbpm_job">
+    <table name="JBPM_JOB">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="3">
+        <column name="VERSION_" order="3">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="duedate_" order="4">
-          <type>timestamp</type>
+        <column name="DUEDATE_" order="4">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processinstance_" order="5">
+        <column name="PROCESSINSTANCE_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="token_" order="6">
+        <column name="TOKEN_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskinstance_" order="7">
+        <column name="TASKINSTANCE_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="issuspended_" order="8">
+        <column name="ISSUSPENDED_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isexclusive_" order="9">
+        <column name="ISEXCLUSIVE_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="lockowner_" order="10">
-          <type>varchar2</type>
+        <column name="LOCKOWNER_" order="10">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="locktime_" order="11">
-          <type>timestamp</type>
+        <column name="LOCKTIME_" order="11">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="exception_" order="12">
+        <column name="EXCEPTION_" order="12">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="retries_" order="13">
+        <column name="RETRIES_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="14">
-          <type>varchar2</type>
+        <column name="NAME_" order="14">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="repeat_" order="15">
-          <type>varchar2</type>
+        <column name="REPEAT_" order="15">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transitionname_" order="16">
-          <type>varchar2</type>
+        <column name="TRANSITIONNAME_" order="16">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="action_" order="17">
+        <column name="ACTION_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelementtype_" order="18">
-          <type>varchar2</type>
+        <column name="GRAPHELEMENTTYPE_" order="18">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelement_" order="19">
+        <column name="GRAPHELEMENT_" order="19">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="node_" order="20">
+        <column name="NODE_" order="20">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_job_pkey">
+      <primarykey name="JBPM_JOB_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_job_action">
-          <localcolumn>action_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_JOB_ACTION">
+          <localcolumn>ACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_job_node">
-          <localcolumn>node_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_JOB_NODE">
+          <localcolumn>NODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_job_prinst">
-          <localcolumn>processinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_JOB_PRINST">
+          <localcolumn>PROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_job_tskinst">
-          <localcolumn>taskinstance_</localcolumn>
-          <targettable>jbpm_taskinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_JOB_TSKINST">
+          <localcolumn>TASKINSTANCE_</localcolumn>
+          <targettable>JBPM_TASKINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_job_token">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_JOB_TOKEN">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_job_action" unique="false">
+        <index name="FK_JOB_ACTION" unique="false">
           <columnnames>
-            <columnname>action_</columnname>
+            <columnname>ACTION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_job_node" unique="false">
+        <index name="FK_JOB_NODE" unique="false">
           <columnnames>
-            <columnname>node_</columnname>
+            <columnname>NODE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_job_prinst" unique="false">
+        <index name="FK_JOB_PRINST" unique="false">
           <columnnames>
-            <columnname>processinstance_</columnname>
+            <columnname>PROCESSINSTANCE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_job_token" unique="false">
+        <index name="FK_JOB_TOKEN" unique="false">
           <columnnames>
-            <columnname>token_</columnname>
+            <columnname>TOKEN_</columnname>
           </columnnames>
         </index>
-        <index name="fk_job_tskinst" unique="false">
+        <index name="FK_JOB_TSKINST" unique="false">
           <columnnames>
-            <columnname>taskinstance_</columnname>
+            <columnname>TASKINSTANCE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_log">
+    <table name="JBPM_LOG">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="index_" order="3">
+        <column name="INDEX_" order="3">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="date_" order="4">
-          <type>timestamp</type>
+        <column name="DATE_" order="4">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="token_" order="5">
+        <column name="TOKEN_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="parent_" order="6">
+        <column name="PARENT_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="message_" order="7">
+        <column name="MESSAGE_" order="7">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="exception_" order="8">
+        <column name="EXCEPTION_" order="8">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="action_" order="9">
+        <column name="ACTION_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="node_" order="10">
+        <column name="NODE_" order="10">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="enter_" order="11">
-          <type>timestamp</type>
+        <column name="ENTER_" order="11">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="leave_" order="12">
-          <type>timestamp</type>
+        <column name="LEAVE_" order="12">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="duration_" order="13">
+        <column name="DURATION_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newlongvalue_" order="14">
+        <column name="NEWLONGVALUE_" order="14">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="transition_" order="15">
+        <column name="TRANSITION_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="child_" order="16">
+        <column name="CHILD_" order="16">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="sourcenode_" order="17">
+        <column name="SOURCENODE_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="destinationnode_" order="18">
+        <column name="DESTINATIONNODE_" order="18">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="variableinstance_" order="19">
+        <column name="VARIABLEINSTANCE_" order="19">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldbytearray_" order="20">
+        <column name="OLDBYTEARRAY_" order="20">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newbytearray_" order="21">
+        <column name="NEWBYTEARRAY_" order="21">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="olddatevalue_" order="22">
-          <type>timestamp</type>
+        <column name="OLDDATEVALUE_" order="22">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newdatevalue_" order="23">
-          <type>timestamp</type>
+        <column name="NEWDATEVALUE_" order="23">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="olddoublevalue_" order="24">
+        <column name="OLDDOUBLEVALUE_" order="24">
           <type>float</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newdoublevalue_" order="25">
+        <column name="NEWDOUBLEVALUE_" order="25">
           <type>float</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldlongidclass_" order="26">
-          <type>varchar2</type>
+        <column name="OLDLONGIDCLASS_" order="26">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldlongidvalue_" order="27">
+        <column name="OLDLONGIDVALUE_" order="27">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newlongidclass_" order="28">
-          <type>varchar2</type>
+        <column name="NEWLONGIDCLASS_" order="28">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newlongidvalue_" order="29">
+        <column name="NEWLONGIDVALUE_" order="29">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldstringidclass_" order="30">
-          <type>varchar2</type>
+        <column name="OLDSTRINGIDCLASS_" order="30">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldstringidvalue_" order="31">
-          <type>varchar2</type>
+        <column name="OLDSTRINGIDVALUE_" order="31">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newstringidclass_" order="32">
-          <type>varchar2</type>
+        <column name="NEWSTRINGIDCLASS_" order="32">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newstringidvalue_" order="33">
-          <type>varchar2</type>
+        <column name="NEWSTRINGIDVALUE_" order="33">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldlongvalue_" order="34">
+        <column name="OLDLONGVALUE_" order="34">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="oldstringvalue_" order="35">
+        <column name="OLDSTRINGVALUE_" order="35">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="newstringvalue_" order="36">
+        <column name="NEWSTRINGVALUE_" order="36">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskinstance_" order="37">
+        <column name="TASKINSTANCE_" order="37">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskactorid_" order="38">
-          <type>varchar2</type>
+        <column name="TASKACTORID_" order="38">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskoldactorid_" order="39">
-          <type>varchar2</type>
+        <column name="TASKOLDACTORID_" order="39">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="swimlaneinstance_" order="40">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_log_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_log_action">
-          <localcolumn>action_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_oldbytes">
-          <localcolumn>oldbytearray_</localcolumn>
-          <targettable>jbpm_bytearray</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_newbytes">
-          <localcolumn>newbytearray_</localcolumn>
-          <targettable>jbpm_bytearray</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_parent">
-          <localcolumn>parent_</localcolumn>
-          <targettable>jbpm_log</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_destnode">
-          <localcolumn>destinationnode_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_node">
-          <localcolumn>node_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_sourcenode">
-          <localcolumn>sourcenode_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_swiminst">
-          <localcolumn>swimlaneinstance_</localcolumn>
-          <targettable>jbpm_swimlaneinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_taskinst">
-          <localcolumn>taskinstance_</localcolumn>
-          <targettable>jbpm_taskinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_token">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_childtoken">
-          <localcolumn>child_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_transition">
-          <localcolumn>transition_</localcolumn>
-          <targettable>jbpm_transition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_log_varinst">
-          <localcolumn>variableinstance_</localcolumn>
-          <targettable>jbpm_variableinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_log_action" unique="false">
-          <columnnames>
-            <columnname>action_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_childtoken" unique="false">
-          <columnnames>
-            <columnname>child_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_destnode" unique="false">
-          <columnnames>
-            <columnname>destinationnode_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_newbytes" unique="false">
-          <columnnames>
-            <columnname>newbytearray_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_node" unique="false">
-          <columnnames>
-            <columnname>node_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_oldbytes" unique="false">
-          <columnnames>
-            <columnname>oldbytearray_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_parent" unique="false">
-          <columnnames>
-            <columnname>parent_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_sourcenode" unique="false">
-          <columnnames>
-            <columnname>sourcenode_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_swiminst" unique="false">
-          <columnnames>
-            <columnname>swimlaneinstance_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_taskinst" unique="false">
-          <columnnames>
-            <columnname>taskinstance_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_token" unique="false">
-          <columnnames>
-            <columnname>token_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_transition" unique="false">
-          <columnnames>
-            <columnname>transition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_log_varinst" unique="false">
-          <columnnames>
-            <columnname>variableinstance_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_moduledefinition">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="class_" order="2">
-          <type>char</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="processdefinition_" order="4">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="starttask_" order="5">
+        <column name="SWIMLANEINSTANCE_" order="40">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_moduledefinition_pkey">
+      <primarykey name="JBPM_LOG_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_moddef_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_LOG_ACTION">
+          <localcolumn>ACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_tskdef_start">
-          <localcolumn>starttask_</localcolumn>
-          <targettable>jbpm_task</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_LOG_OLDBYTES">
+          <localcolumn>OLDBYTEARRAY_</localcolumn>
+          <targettable>JBPM_BYTEARRAY</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_NEWBYTES">
+          <localcolumn>NEWBYTEARRAY_</localcolumn>
+          <targettable>JBPM_BYTEARRAY</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_PARENT">
+          <localcolumn>PARENT_</localcolumn>
+          <targettable>JBPM_LOG</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_DESTNODE">
+          <localcolumn>DESTINATIONNODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_NODE">
+          <localcolumn>NODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_SOURCENODE">
+          <localcolumn>SOURCENODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_SWIMINST">
+          <localcolumn>SWIMLANEINSTANCE_</localcolumn>
+          <targettable>JBPM_SWIMLANEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_TASKINST">
+          <localcolumn>TASKINSTANCE_</localcolumn>
+          <targettable>JBPM_TASKINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_TOKEN">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_CHILDTOKEN">
+          <localcolumn>CHILD_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_TRANSITION">
+          <localcolumn>TRANSITION_</localcolumn>
+          <targettable>JBPM_TRANSITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_LOG_VARINST">
+          <localcolumn>VARIABLEINSTANCE_</localcolumn>
+          <targettable>JBPM_VARIABLEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_moddef_procdef" unique="false">
+        <index name="FK_LOG_ACTION" unique="false">
           <columnnames>
-            <columnname>processdefinition_</columnname>
+            <columnname>ACTION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_tskdef_start" unique="false">
+        <index name="FK_LOG_CHILDTOKEN" unique="false">
           <columnnames>
-            <columnname>starttask_</columnname>
+            <columnname>CHILD_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_DESTNODE" unique="false">
+          <columnnames>
+            <columnname>DESTINATIONNODE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_NEWBYTES" unique="false">
+          <columnnames>
+            <columnname>NEWBYTEARRAY_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_NODE" unique="false">
+          <columnnames>
+            <columnname>NODE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_OLDBYTES" unique="false">
+          <columnnames>
+            <columnname>OLDBYTEARRAY_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_PARENT" unique="false">
+          <columnnames>
+            <columnname>PARENT_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_SOURCENODE" unique="false">
+          <columnnames>
+            <columnname>SOURCENODE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_SWIMINST" unique="false">
+          <columnnames>
+            <columnname>SWIMLANEINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_TASKINST" unique="false">
+          <columnnames>
+            <columnname>TASKINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_TOKEN" unique="false">
+          <columnnames>
+            <columnname>TOKEN_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_TRANSITION" unique="false">
+          <columnnames>
+            <columnname>TRANSITION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_LOG_VARINST" unique="false">
+          <columnnames>
+            <columnname>VARIABLEINSTANCE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_moduleinstance">
+    <table name="JBPM_MODULEDEFINITION">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="3">
-          <type>number</type>
-          <nullable>false</nullable>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processinstance_" order="4">
+        <column name="PROCESSDEFINITION_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskmgmtdefinition_" order="5">
+        <column name="STARTTASK_" order="5">
           <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="name_" order="6">
-          <type>varchar2</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_moduleinstance_pkey">
+      <primarykey name="JBPM_MODULEDEFINITION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_taskmgtinst_tmd">
-          <localcolumn>taskmgmtdefinition_</localcolumn>
-          <targettable>jbpm_moduledefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_MODDEF_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_modinst_prcinst">
-          <localcolumn>processinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TSKDEF_START">
+          <localcolumn>STARTTASK_</localcolumn>
+          <targettable>JBPM_TASK</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_modinst_prcinst" unique="false">
+        <index name="FK_MODDEF_PROCDEF" unique="false">
           <columnnames>
-            <columnname>processinstance_</columnname>
+            <columnname>PROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_taskmgtinst_tmd" unique="false">
+        <index name="FK_TSKDEF_START" unique="false">
           <columnnames>
-            <columnname>taskmgmtdefinition_</columnname>
+            <columnname>STARTTASK_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_node">
+    <table name="JBPM_MODULEINSTANCE">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
+        <column name="VERSION_" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PROCESSINSTANCE_" order="4">
+          <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="description_" order="4">
+        <column name="TASKMGMTDEFINITION_" order="5">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="6">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_MODULEINSTANCE_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_TASKMGTINST_TMD">
+          <localcolumn>TASKMGMTDEFINITION_</localcolumn>
+          <targettable>JBPM_MODULEDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_MODINST_PRCINST">
+          <localcolumn>PROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_MODINST_PRCINST" unique="false">
+          <columnnames>
+            <columnname>PROCESSINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASKMGTINST_TMD" unique="false">
+          <columnnames>
+            <columnname>TASKMGMTDEFINITION_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_NODE">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION_" order="4">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="5">
+        <column name="PROCESSDEFINITION_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isasync_" order="6">
+        <column name="ISASYNC_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isasyncexcl_" order="7">
+        <column name="ISASYNCEXCL_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="action_" order="8">
+        <column name="ACTION_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="superstate_" order="9">
+        <column name="SUPERSTATE_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="subprocname_" order="10">
-          <type>varchar2</type>
+        <column name="SUBPROCNAME_" order="10">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="subprocessdefinition_" order="11">
+        <column name="SUBPROCESSDEFINITION_" order="11">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="decisionexpression_" order="12">
-          <type>varchar2</type>
+        <column name="DECISIONEXPRESSION_" order="12">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="decisiondelegation" order="13">
+        <column name="DECISIONDELEGATION" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="script_" order="14">
+        <column name="SCRIPT_" order="14">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="signal_" order="15">
+        <column name="SIGNAL_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="createtasks_" order="16">
+        <column name="CREATETASKS_" order="16">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="endtasks_" order="17">
+        <column name="ENDTASKS_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="nodecollectionindex_" order="18">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_node_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_node_script">
-          <localcolumn>script_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_node_action">
-          <localcolumn>action_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_decision_deleg">
-          <localcolumn>decisiondelegation</localcolumn>
-          <targettable>jbpm_delegation</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_node_superstate">
-          <localcolumn>superstate_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_procst_sbprcdef">
-          <localcolumn>subprocessdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_node_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_decision_deleg" unique="false">
-          <columnnames>
-            <columnname>decisiondelegation</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_node_action" unique="false">
-          <columnnames>
-            <columnname>action_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_node_procdef" unique="false">
-          <columnnames>
-            <columnname>processdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_node_script" unique="false">
-          <columnnames>
-            <columnname>script_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_node_superstate" unique="false">
-          <columnnames>
-            <columnname>superstate_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_procst_sbprcdef" unique="false">
-          <columnnames>
-            <columnname>subprocessdefinition_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_pooledactor">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="version_" order="2">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="actorid_" order="3">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="swimlaneinstance_" order="4">
+        <column name="NODECOLLECTIONINDEX_" order="18">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_pooledactor_pkey">
+      <primarykey name="JBPM_NODE_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_pooledactor_sli">
-          <localcolumn>swimlaneinstance_</localcolumn>
-          <targettable>jbpm_swimlaneinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_NODE_SCRIPT">
+          <localcolumn>SCRIPT_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_NODE_ACTION">
+          <localcolumn>ACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_DECISION_DELEG">
+          <localcolumn>DECISIONDELEGATION</localcolumn>
+          <targettable>JBPM_DELEGATION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_NODE_SUPERSTATE">
+          <localcolumn>SUPERSTATE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_PROCST_SBPRCDEF">
+          <localcolumn>SUBPROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_NODE_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_pooledactor_sli" unique="false">
+        <index name="FK_DECISION_DELEG" unique="false">
           <columnnames>
-            <columnname>swimlaneinstance_</columnname>
+            <columnname>DECISIONDELEGATION</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_NODE_ACTION" unique="false">
+          <columnnames>
+            <columnname>ACTION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_NODE_PROCDEF" unique="false">
+          <columnnames>
+            <columnname>PROCESSDEFINITION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_NODE_SCRIPT" unique="false">
+          <columnnames>
+            <columnname>SCRIPT_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_NODE_SUPERSTATE" unique="false">
+          <columnnames>
+            <columnname>SUPERSTATE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_PROCST_SBPRCDEF" unique="false">
+          <columnnames>
+            <columnname>SUBPROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_processdefinition">
+    <table name="JBPM_POOLEDACTOR">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
+        <column name="VERSION_" order="2">
+          <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
+        <column name="ACTORID_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="description_" order="4">
+        <column name="SWIMLANEINSTANCE_" order="4">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_POOLEDACTOR_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_POOLEDACTOR_SLI">
+          <localcolumn>SWIMLANEINSTANCE_</localcolumn>
+          <targettable>JBPM_SWIMLANEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_POOLEDACTOR_SLI" unique="false">
+          <columnnames>
+            <columnname>SWIMLANEINSTANCE_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_PROCESSDEFINITION">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION_" order="4">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="5">
+        <column name="VERSION_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isterminationimplicit_" order="6">
+        <column name="ISTERMINATIONIMPLICIT_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="startstate_" order="7">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_processdefinition_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_procdef_strtsta">
-          <localcolumn>startstate_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_procdef_strtsta" unique="false">
-          <columnnames>
-            <columnname>startstate_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_processinstance">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="version_" order="2">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="key_" order="3">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="start_" order="4">
-          <type>timestamp</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="end_" order="5">
-          <type>timestamp</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="issuspended_" order="6">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="processdefinition_" order="7">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="roottoken_" order="8">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="superprocesstoken_" order="9">
+        <column name="STARTSTATE_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_processinstance_pkey">
+      <primarykey name="JBPM_PROCESSDEFINITION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_procin_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_procin_sproctkn">
-          <localcolumn>superprocesstoken_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_procin_roottkn">
-          <localcolumn>roottoken_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_PROCDEF_STRTSTA">
+          <localcolumn>STARTSTATE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_procin_procdef" unique="false">
+        <index name="FK_PROCDEF_STRTSTA" unique="false">
           <columnnames>
-            <columnname>processdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_procin_roottkn" unique="false">
-          <columnnames>
-            <columnname>roottoken_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_procin_sproctkn" unique="false">
-          <columnnames>
-            <columnname>superprocesstoken_</columnname>
+            <columnname>STARTSTATE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_runtimeaction">
+    <table name="JBPM_PROCESSINSTANCE">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="2">
+        <column name="VERSION_" order="2">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="eventtype_" order="3">
-          <type>varchar2</type>
+        <column name="KEY_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="type_" order="4">
-          <type>char</type>
+        <column name="START_" order="4">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="graphelement_" order="5">
+        <column name="END_" order="5">
+          <type>timestamp(6)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ISSUSPENDED_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processinstance_" order="6">
+        <column name="PROCESSDEFINITION_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="action_" order="7">
+        <column name="ROOTTOKEN_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processinstanceindex_" order="8">
+        <column name="SUPERPROCESSTOKEN_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_runtimeaction_pkey">
+      <primarykey name="JBPM_PROCESSINSTANCE_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_rtactn_action">
-          <localcolumn>action_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_PROCIN_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_rtactn_procinst">
-          <localcolumn>processinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_PROCIN_SPROCTKN">
+          <localcolumn>SUPERPROCESSTOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_PROCIN_ROOTTKN">
+          <localcolumn>ROOTTOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_rtactn_action" unique="false">
+        <index name="FK_PROCIN_PROCDEF" unique="false">
           <columnnames>
-            <columnname>action_</columnname>
+            <columnname>PROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_rtactn_procinst" unique="false">
+        <index name="FK_PROCIN_ROOTTKN" unique="false">
           <columnnames>
-            <columnname>processinstance_</columnname>
+            <columnname>ROOTTOKEN_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_PROCIN_SPROCTKN" unique="false">
+          <columnnames>
+            <columnname>SUPERPROCESSTOKEN_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_swimlane">
+    <table name="JBPM_RUNTIMEACTION">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="2">
-          <type>varchar2</type>
+        <column name="VERSION_" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="EVENTTYPE_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actoridexpression_" order="3">
-          <type>varchar2</type>
+        <column name="TYPE_" order="4">
+          <type>char(1 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="pooledactorsexpression_" order="4">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="assignmentdelegation_" order="5">
+        <column name="GRAPHELEMENT_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskmgmtdefinition_" order="6">
+        <column name="PROCESSINSTANCE_" order="6">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACTION_" order="7">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PROCESSINSTANCEINDEX_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_swimlane_pkey">
+      <primarykey name="JBPM_RUNTIMEACTION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_swl_assdel">
-          <localcolumn>assignmentdelegation_</localcolumn>
-          <targettable>jbpm_delegation</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_RTACTN_ACTION">
+          <localcolumn>ACTION_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_swl_tskmgmtdef">
-          <localcolumn>taskmgmtdefinition_</localcolumn>
-          <targettable>jbpm_moduledefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_RTACTN_PROCINST">
+          <localcolumn>PROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_swl_assdel" unique="false">
+        <index name="FK_RTACTN_ACTION" unique="false">
           <columnnames>
-            <columnname>assignmentdelegation_</columnname>
+            <columnname>ACTION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_swl_tskmgmtdef" unique="false">
+        <index name="FK_RTACTN_PROCINST" unique="false">
           <columnnames>
-            <columnname>taskmgmtdefinition_</columnname>
+            <columnname>PROCESSINSTANCE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_swimlaneinstance">
+    <table name="JBPM_SWIMLANE">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="2">
+        <column name="NAME_" order="2">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ACTORIDEXPRESSION_" order="3">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="POOLEDACTORSEXPRESSION_" order="4">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ASSIGNMENTDELEGATION_" order="5">
           <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actorid_" order="4">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="swimlane_" order="5">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="taskmgmtinstance_" order="6">
+        <column name="TASKMGMTDEFINITION_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_swimlaneinstance_pkey">
+      <primarykey name="JBPM_SWIMLANE_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_swimlaneinst_tm">
-          <localcolumn>taskmgmtinstance_</localcolumn>
-          <targettable>jbpm_moduleinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_SWL_ASSDEL">
+          <localcolumn>ASSIGNMENTDELEGATION_</localcolumn>
+          <targettable>JBPM_DELEGATION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_swimlaneinst_sl">
-          <localcolumn>swimlane_</localcolumn>
-          <targettable>jbpm_swimlane</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_SWL_TSKMGMTDEF">
+          <localcolumn>TASKMGMTDEFINITION_</localcolumn>
+          <targettable>JBPM_MODULEDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_swimlaneinst_sl" unique="false">
+        <index name="FK_SWL_ASSDEL" unique="false">
           <columnnames>
-            <columnname>swimlane_</columnname>
+            <columnname>ASSIGNMENTDELEGATION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_swimlaneinst_tm" unique="false">
+        <index name="FK_SWL_TSKMGMTDEF" unique="false">
           <columnnames>
-            <columnname>taskmgmtinstance_</columnname>
+            <columnname>TASKMGMTDEFINITION_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_task">
+    <table name="JBPM_SWIMLANEINSTANCE">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="2">
-          <type>varchar2</type>
+        <column name="VERSION_" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="description_" order="3">
+        <column name="ACTORID_" order="4">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="SWIMLANE_" order="5">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="TASKMGMTINSTANCE_" order="6">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_SWIMLANEINSTANCE_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_SWIMLANEINST_TM">
+          <localcolumn>TASKMGMTINSTANCE_</localcolumn>
+          <targettable>JBPM_MODULEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_SWIMLANEINST_SL">
+          <localcolumn>SWIMLANE_</localcolumn>
+          <targettable>JBPM_SWIMLANE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_SWIMLANEINST_SL" unique="false">
+          <columnnames>
+            <columnname>SWIMLANE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_SWIMLANEINST_TM" unique="false">
+          <columnnames>
+            <columnname>TASKMGMTINSTANCE_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_TASK">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="2">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION_" order="3">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="4">
+        <column name="PROCESSDEFINITION_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isblocking_" order="5">
+        <column name="ISBLOCKING_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="issignalling_" order="6">
+        <column name="ISSIGNALLING_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="condition_" order="7">
-          <type>varchar2</type>
+        <column name="CONDITION_" order="7">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="duedate_" order="8">
-          <type>varchar2</type>
+        <column name="DUEDATE_" order="8">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="priority_" order="9">
+        <column name="PRIORITY_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actoridexpression_" order="10">
-          <type>varchar2</type>
+        <column name="ACTORIDEXPRESSION_" order="10">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="pooledactorsexpression_" order="11">
-          <type>varchar2</type>
+        <column name="POOLEDACTORSEXPRESSION_" order="11">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskmgmtdefinition_" order="12">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="tasknode_" order="13">
+        <column name="TASKMGMTDEFINITION_" order="12">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="startstate_" order="14">
+        <column name="TASKNODE_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="assignmentdelegation_" order="15">
+        <column name="STARTSTATE_" order="14">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="swimlane_" order="16">
+        <column name="ASSIGNMENTDELEGATION_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskcontroller_" order="17">
+        <column name="SWIMLANE_" order="16">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-      </columns>
-      <primarykey name="jbpm_task_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_task_assdel">
-          <localcolumn>assignmentdelegation_</localcolumn>
-          <targettable>jbpm_delegation</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_task_taskmgtdef">
-          <localcolumn>taskmgmtdefinition_</localcolumn>
-          <targettable>jbpm_moduledefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_task_tasknode">
-          <localcolumn>tasknode_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_task_startst">
-          <localcolumn>startstate_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_task_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_task_swimlane">
-          <localcolumn>swimlane_</localcolumn>
-          <targettable>jbpm_swimlane</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_tsk_tskctrl">
-          <localcolumn>taskcontroller_</localcolumn>
-          <targettable>jbpm_taskcontroller</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_task_assdel" unique="false">
-          <columnnames>
-            <columnname>assignmentdelegation_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_task_procdef" unique="false">
-          <columnnames>
-            <columnname>processdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_task_startst" unique="false">
-          <columnnames>
-            <columnname>startstate_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_task_swimlane" unique="false">
-          <columnnames>
-            <columnname>swimlane_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_task_taskmgtdef" unique="false">
-          <columnnames>
-            <columnname>taskmgmtdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_task_tasknode" unique="false">
-          <columnnames>
-            <columnname>tasknode_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_tsk_tskctrl" unique="false">
-          <columnnames>
-            <columnname>taskcontroller_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_taskactorpool">
-      <columns>
-        <column name="taskinstance_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="pooledactor_" order="2">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_taskactorpool_pkey">
-        <columnnames>
-          <columnname order="1">taskinstance_</columnname>
-          <columnname order="2">pooledactor_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_tskactpol_plact">
-          <localcolumn>pooledactor_</localcolumn>
-          <targettable>jbpm_pooledactor</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_taskactpl_tski">
-          <localcolumn>taskinstance_</localcolumn>
-          <targettable>jbpm_taskinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_taskactpl_tski" unique="false">
-          <columnnames>
-            <columnname>taskinstance_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_tskactpol_plact" unique="false">
-          <columnnames>
-            <columnname>pooledactor_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_taskcontroller">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="taskcontrollerdelegation_" order="2">
+        <column name="TASKCONTROLLER_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_taskcontroller_pkey">
+      <primarykey name="JBPM_TASK_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_tskctrl_deleg">
-          <localcolumn>taskcontrollerdelegation_</localcolumn>
-          <targettable>jbpm_delegation</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TASK_ASSDEL">
+          <localcolumn>ASSIGNMENTDELEGATION_</localcolumn>
+          <targettable>JBPM_DELEGATION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASK_TASKMGTDEF">
+          <localcolumn>TASKMGMTDEFINITION_</localcolumn>
+          <targettable>JBPM_MODULEDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASK_TASKNODE">
+          <localcolumn>TASKNODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASK_STARTST">
+          <localcolumn>STARTSTATE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASK_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASK_SWIMLANE">
+          <localcolumn>SWIMLANE_</localcolumn>
+          <targettable>JBPM_SWIMLANE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TSK_TSKCTRL">
+          <localcolumn>TASKCONTROLLER_</localcolumn>
+          <targettable>JBPM_TASKCONTROLLER</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_tskctrl_deleg" unique="false">
+        <index name="FK_TASK_ASSDEL" unique="false">
           <columnnames>
-            <columnname>taskcontrollerdelegation_</columnname>
+            <columnname>ASSIGNMENTDELEGATION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASK_PROCDEF" unique="false">
+          <columnnames>
+            <columnname>PROCESSDEFINITION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASK_STARTST" unique="false">
+          <columnnames>
+            <columnname>STARTSTATE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASK_SWIMLANE" unique="false">
+          <columnnames>
+            <columnname>SWIMLANE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASK_TASKMGTDEF" unique="false">
+          <columnnames>
+            <columnname>TASKMGMTDEFINITION_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TASK_TASKNODE" unique="false">
+          <columnnames>
+            <columnname>TASKNODE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TSK_TSKCTRL" unique="false">
+          <columnnames>
+            <columnname>TASKCONTROLLER_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_taskinstance">
+    <table name="JBPM_TASKACTORPOOL">
       <columns>
-        <column name="id_" order="1">
+        <column name="TASKINSTANCE_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="version_" order="3">
+        <column name="POOLEDACTOR_" order="2">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="4">
-          <type>varchar2</type>
+      </columns>
+      <primarykey name="JBPM_TASKACTORPOOL_PKEY">
+        <columnnames>
+          <columnname order="1">TASKINSTANCE_</columnname>
+          <columnname order="2">POOLEDACTOR_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_TSKACTPOL_PLACT">
+          <localcolumn>POOLEDACTOR_</localcolumn>
+          <targettable>JBPM_POOLEDACTOR</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TASKACTPL_TSKI">
+          <localcolumn>TASKINSTANCE_</localcolumn>
+          <targettable>JBPM_TASKINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_TASKACTPL_TSKI" unique="false">
+          <columnnames>
+            <columnname>TASKINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TSKACTPOL_PLACT" unique="false">
+          <columnnames>
+            <columnname>POOLEDACTOR_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_TASKCONTROLLER">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="TASKCONTROLLERDELEGATION_" order="2">
+          <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="description_" order="5">
+      </columns>
+      <primarykey name="JBPM_TASKCONTROLLER_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_TSKCTRL_DELEG">
+          <localcolumn>TASKCONTROLLERDELEGATION_</localcolumn>
+          <targettable>JBPM_DELEGATION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_TSKCTRL_DELEG" unique="false">
+          <columnnames>
+            <columnname>TASKCONTROLLERDELEGATION_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_TASKINSTANCE">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERSION_" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="4">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION_" order="5">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="actorid_" order="6">
-          <type>varchar2</type>
+        <column name="ACTORID_" order="6">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="create_" order="7">
-          <type>timestamp</type>
+        <column name="CREATE_" order="7">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="start_" order="8">
-          <type>timestamp</type>
+        <column name="START_" order="8">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="end_" order="9">
-          <type>timestamp</type>
+        <column name="END_" order="9">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="duedate_" order="10">
-          <type>timestamp</type>
+        <column name="DUEDATE_" order="10">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="priority_" order="11">
+        <column name="PRIORITY_" order="11">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="iscancelled_" order="12">
+        <column name="ISCANCELLED_" order="12">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="issuspended_" order="13">
+        <column name="ISSUSPENDED_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isopen_" order="14">
+        <column name="ISOPEN_" order="14">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="issignalling_" order="15">
+        <column name="ISSIGNALLING_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isblocking_" order="16">
+        <column name="ISBLOCKING_" order="16">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="task_" order="17">
+        <column name="TASK_" order="17">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="token_" order="18">
+        <column name="TOKEN_" order="18">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="procinst_" order="19">
+        <column name="PROCINST_" order="19">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="swimlaninstance_" order="20">
+        <column name="SWIMLANINSTANCE_" order="20">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskmgmtinstance_" order="21">
+        <column name="TASKMGMTINSTANCE_" order="21">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="jbpm_engine_name" order="22">
-          <type>varchar2</type>
+        <column name="JBPM_ENGINE_NAME" order="22">
+          <type>varchar2(50 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_taskinstance_pkey">
+      <primarykey name="JBPM_TASKINSTANCE_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_taskinst_tminst">
-          <localcolumn>taskmgmtinstance_</localcolumn>
-          <targettable>jbpm_moduleinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TASKINST_TMINST">
+          <localcolumn>TASKMGMTINSTANCE_</localcolumn>
+          <targettable>JBPM_MODULEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_tskins_prcins">
-          <localcolumn>procinst_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TSKINS_PRCINS">
+          <localcolumn>PROCINST_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_taskinst_slinst">
-          <localcolumn>swimlaninstance_</localcolumn>
-          <targettable>jbpm_swimlaneinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TASKINST_SLINST">
+          <localcolumn>SWIMLANINSTANCE_</localcolumn>
+          <targettable>JBPM_SWIMLANEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_taskinst_task">
-          <localcolumn>task_</localcolumn>
-          <targettable>jbpm_task</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TASKINST_TASK">
+          <localcolumn>TASK_</localcolumn>
+          <targettable>JBPM_TASK</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_taskinst_token">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TASKINST_TOKEN">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_taskinst_slinst" unique="false">
+        <index name="FK_TASKINST_SLINST" unique="false">
           <columnnames>
-            <columnname>swimlaninstance_</columnname>
+            <columnname>SWIMLANINSTANCE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_taskinst_task" unique="false">
+        <index name="FK_TASKINST_TASK" unique="false">
           <columnnames>
-            <columnname>task_</columnname>
+            <columnname>TASK_</columnname>
           </columnnames>
         </index>
-        <index name="fk_taskinst_tminst" unique="false">
+        <index name="FK_TASKINST_TMINST" unique="false">
           <columnnames>
-            <columnname>taskmgmtinstance_</columnname>
+            <columnname>TASKMGMTINSTANCE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_taskinst_token" unique="false">
+        <index name="FK_TASKINST_TOKEN" unique="false">
           <columnnames>
-            <columnname>token_</columnname>
+            <columnname>TOKEN_</columnname>
           </columnnames>
         </index>
-        <index name="fk_tskins_prcins" unique="false">
+        <index name="FK_TSKINS_PRCINS" unique="false">
           <columnnames>
-            <columnname>procinst_</columnname>
+            <columnname>PROCINST_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_token">
+    <table name="JBPM_TOKEN">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="2">
+        <column name="VERSION_" order="2">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="3">
-          <type>varchar2</type>
+        <column name="NAME_" order="3">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="start_" order="4">
-          <type>timestamp</type>
+        <column name="START_" order="4">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="end_" order="5">
-          <type>timestamp</type>
+        <column name="END_" order="5">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="nodeenter_" order="6">
-          <type>timestamp</type>
+        <column name="NODEENTER_" order="6">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="nextlogindex_" order="7">
+        <column name="NEXTLOGINDEX_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isabletoreactivateparent_" order="8">
+        <column name="ISABLETOREACTIVATEPARENT_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="isterminationimplicit_" order="9">
+        <column name="ISTERMINATIONIMPLICIT_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="issuspended_" order="10">
+        <column name="ISSUSPENDED_" order="10">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="lock_" order="11">
-          <type>varchar2</type>
+        <column name="LOCK_" order="11">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="node_" order="12">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="processinstance_" order="13">
+        <column name="NODE_" order="12">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="parent_" order="14">
+        <column name="PROCESSINSTANCE_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="subprocessinstance_" order="15">
+        <column name="PARENT_" order="14">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-      </columns>
-      <primarykey name="jbpm_token_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_token_node">
-          <localcolumn>node_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_token_procinst">
-          <localcolumn>processinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_token_subpi">
-          <localcolumn>subprocessinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_token_parent">
-          <localcolumn>parent_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_token_node" unique="false">
-          <columnnames>
-            <columnname>node_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_token_parent" unique="false">
-          <columnnames>
-            <columnname>parent_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_token_procinst" unique="false">
-          <columnnames>
-            <columnname>processinstance_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_token_subpi" unique="false">
-          <columnnames>
-            <columnname>subprocessinstance_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_tokenvariablemap">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="version_" order="2">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="token_" order="3">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="contextinstance_" order="4">
+        <column name="SUBPROCESSINSTANCE_" order="15">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_tokenvariablemap_pkey">
+      <primarykey name="JBPM_TOKEN_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_tkvarmap_ctxt">
-          <localcolumn>contextinstance_</localcolumn>
-          <targettable>jbpm_moduleinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TOKEN_NODE">
+          <localcolumn>NODE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_tkvarmap_token">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TOKEN_PROCINST">
+          <localcolumn>PROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TOKEN_SUBPI">
+          <localcolumn>SUBPROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TOKEN_PARENT">
+          <localcolumn>PARENT_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_tkvarmap_ctxt" unique="false">
+        <index name="FK_TOKEN_NODE" unique="false">
           <columnnames>
-            <columnname>contextinstance_</columnname>
+            <columnname>NODE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_tkvarmap_token" unique="false">
+        <index name="FK_TOKEN_PARENT" unique="false">
           <columnnames>
-            <columnname>token_</columnname>
+            <columnname>PARENT_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TOKEN_PROCINST" unique="false">
+          <columnnames>
+            <columnname>PROCESSINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TOKEN_SUBPI" unique="false">
+          <columnnames>
+            <columnname>SUBPROCESSINSTANCE_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_transition">
+    <table name="JBPM_TOKENVARIABLEMAP">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="2">
-          <type>varchar2</type>
+        <column name="VERSION_" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="TOKEN_" order="3">
+          <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="description_" order="3">
+        <column name="CONTEXTINSTANCE_" order="4">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_TOKENVARIABLEMAP_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_TKVARMAP_CTXT">
+          <localcolumn>CONTEXTINSTANCE_</localcolumn>
+          <targettable>JBPM_MODULEINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_TKVARMAP_TOKEN">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_TKVARMAP_CTXT" unique="false">
+          <columnnames>
+            <columnname>CONTEXTINSTANCE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_TKVARMAP_TOKEN" unique="false">
+          <columnnames>
+            <columnname>TOKEN_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_TRANSITION">
+      <columns>
+        <column name="ID_" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="2">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="DESCRIPTION_" order="3">
           <type>clob</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processdefinition_" order="4">
+        <column name="PROCESSDEFINITION_" order="4">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="from_" order="5">
+        <column name="FROM_" order="5">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="to_" order="6">
+        <column name="TO_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="condition_" order="7">
-          <type>varchar2</type>
+        <column name="CONDITION_" order="7">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="fromindex_" order="8">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-      </columns>
-      <primarykey name="jbpm_transition_pkey">
-        <columnnames>
-          <columnname order="1">id_</columnname>
-        </columnnames>
-      </primarykey>
-      <foreignkeys>
-        <foreignkey name="fk_transition_to">
-          <localcolumn>to_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_transition_from">
-          <localcolumn>from_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-        <foreignkey name="fk_trans_procdef">
-          <localcolumn>processdefinition_</localcolumn>
-          <targettable>jbpm_processdefinition</targettable>
-          <targetcolumn>id_</targetcolumn>
-        </foreignkey>
-      </foreignkeys>
-      <indexes>
-        <index name="fk_trans_procdef" unique="false">
-          <columnnames>
-            <columnname>processdefinition_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_transition_from" unique="false">
-          <columnnames>
-            <columnname>from_</columnname>
-          </columnnames>
-        </index>
-        <index name="fk_transition_to" unique="false">
-          <columnnames>
-            <columnname>to_</columnname>
-          </columnnames>
-        </index>
-      </indexes>
-    </table>
-    <table name="jbpm_variableaccess">
-      <columns>
-        <column name="id_" order="1">
-          <type>number</type>
-          <nullable>false</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="variablename_" order="2">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="access_" order="3">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="mappedname_" order="4">
-          <type>varchar2</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="processstate_" order="5">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="taskcontroller_" order="6">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="index_" order="7">
-          <type>number</type>
-          <nullable>true</nullable>
-          <autoincrement>false</autoincrement>
-        </column>
-        <column name="script_" order="8">
+        <column name="FROMINDEX_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_variableaccess_pkey">
+      <primarykey name="JBPM_TRANSITION_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_varacc_script">
-          <localcolumn>script_</localcolumn>
-          <targettable>jbpm_action</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TRANSITION_TO">
+          <localcolumn>TO_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_varacc_procst">
-          <localcolumn>processstate_</localcolumn>
-          <targettable>jbpm_node</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TRANSITION_FROM">
+          <localcolumn>FROM_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_varacc_tskctrl">
-          <localcolumn>taskcontroller_</localcolumn>
-          <targettable>jbpm_taskcontroller</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_TRANS_PROCDEF">
+          <localcolumn>PROCESSDEFINITION_</localcolumn>
+          <targettable>JBPM_PROCESSDEFINITION</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_varacc_procst" unique="false">
+        <index name="FK_TRANS_PROCDEF" unique="false">
           <columnnames>
-            <columnname>processstate_</columnname>
+            <columnname>PROCESSDEFINITION_</columnname>
           </columnnames>
         </index>
-        <index name="fk_varacc_script" unique="false">
+        <index name="FK_TRANSITION_FROM" unique="false">
           <columnnames>
-            <columnname>script_</columnname>
+            <columnname>FROM_</columnname>
           </columnnames>
         </index>
-        <index name="fk_varacc_tskctrl" unique="false">
+        <index name="FK_TRANSITION_TO" unique="false">
           <columnnames>
-            <columnname>taskcontroller_</columnname>
+            <columnname>TO_</columnname>
           </columnnames>
         </index>
       </indexes>
     </table>
-    <table name="jbpm_variableinstance">
+    <table name="JBPM_VARIABLEACCESS">
       <columns>
-        <column name="id_" order="1">
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="class_" order="2">
-          <type>char</type>
-          <nullable>false</nullable>
+        <column name="VARIABLENAME_" order="2">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="version_" order="3">
+        <column name="ACCESS_" order="3">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MAPPEDNAME_" order="4">
+          <type>varchar2(255 char)</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="PROCESSSTATE_" order="5">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="TASKCONTROLLER_" order="6">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="INDEX_" order="7">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="SCRIPT_" order="8">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="JBPM_VARIABLEACCESS_PKEY">
+        <columnnames>
+          <columnname order="1">ID_</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_VARACC_SCRIPT">
+          <localcolumn>SCRIPT_</localcolumn>
+          <targettable>JBPM_ACTION</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_VARACC_PROCST">
+          <localcolumn>PROCESSSTATE_</localcolumn>
+          <targettable>JBPM_NODE</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+        <foreignkey name="FK_VARACC_TSKCTRL">
+          <localcolumn>TASKCONTROLLER_</localcolumn>
+          <targettable>JBPM_TASKCONTROLLER</targettable>
+          <targetcolumn>ID_</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="FK_VARACC_PROCST" unique="false">
+          <columnnames>
+            <columnname>PROCESSSTATE_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_VARACC_SCRIPT" unique="false">
+          <columnnames>
+            <columnname>SCRIPT_</columnname>
+          </columnnames>
+        </index>
+        <index name="FK_VARACC_TSKCTRL" unique="false">
+          <columnnames>
+            <columnname>TASKCONTROLLER_</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="JBPM_VARIABLEINSTANCE">
+      <columns>
+        <column name="ID_" order="1">
           <type>number</type>
           <nullable>false</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="name_" order="4">
-          <type>varchar2</type>
+        <column name="CLASS_" order="2">
+          <type>char(1 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="VERSION_" order="3">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="NAME_" order="4">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="converter_" order="5">
-          <type>char</type>
+        <column name="CONVERTER_" order="5">
+          <type>char(1 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="token_" order="6">
+        <column name="TOKEN_" order="6">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="tokenvariablemap_" order="7">
+        <column name="TOKENVARIABLEMAP_" order="7">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="processinstance_" order="8">
+        <column name="PROCESSINSTANCE_" order="8">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="bytearrayvalue_" order="9">
+        <column name="BYTEARRAYVALUE_" order="9">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="datevalue_" order="10">
-          <type>timestamp</type>
+        <column name="DATEVALUE_" order="10">
+          <type>timestamp(6)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="doublevalue_" order="11">
+        <column name="DOUBLEVALUE_" order="11">
           <type>float</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="longidclass_" order="12">
-          <type>varchar2</type>
+        <column name="LONGIDCLASS_" order="12">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="longvalue_" order="13">
+        <column name="LONGVALUE_" order="13">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="stringidclass_" order="14">
-          <type>varchar2</type>
+        <column name="STRINGIDCLASS_" order="14">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="stringvalue_" order="15">
-          <type>varchar2</type>
+        <column name="STRINGVALUE_" order="15">
+          <type>varchar2(255 char)</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
-        <column name="taskinstance_" order="16">
+        <column name="TASKINSTANCE_" order="16">
           <type>number</type>
           <nullable>true</nullable>
           <autoincrement>false</autoincrement>
         </column>
       </columns>
-      <primarykey name="jbpm_variableinstance_pkey">
+      <primarykey name="JBPM_VARIABLEINSTANCE_PKEY">
         <columnnames>
-          <columnname order="1">id_</columnname>
+          <columnname order="1">ID_</columnname>
         </columnnames>
       </primarykey>
       <foreignkeys>
-        <foreignkey name="fk_byteinst_array">
-          <localcolumn>bytearrayvalue_</localcolumn>
-          <targettable>jbpm_bytearray</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_BYTEINST_ARRAY">
+          <localcolumn>BYTEARRAYVALUE_</localcolumn>
+          <targettable>JBPM_BYTEARRAY</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_varinst_prcinst">
-          <localcolumn>processinstance_</localcolumn>
-          <targettable>jbpm_processinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_VARINST_PRCINST">
+          <localcolumn>PROCESSINSTANCE_</localcolumn>
+          <targettable>JBPM_PROCESSINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_var_tskinst">
-          <localcolumn>taskinstance_</localcolumn>
-          <targettable>jbpm_taskinstance</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_VAR_TSKINST">
+          <localcolumn>TASKINSTANCE_</localcolumn>
+          <targettable>JBPM_TASKINSTANCE</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_varinst_tk">
-          <localcolumn>token_</localcolumn>
-          <targettable>jbpm_token</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_VARINST_TK">
+          <localcolumn>TOKEN_</localcolumn>
+          <targettable>JBPM_TOKEN</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
-        <foreignkey name="fk_varinst_tkvarmp">
-          <localcolumn>tokenvariablemap_</localcolumn>
-          <targettable>jbpm_tokenvariablemap</targettable>
-          <targetcolumn>id_</targetcolumn>
+        <foreignkey name="FK_VARINST_TKVARMP">
+          <localcolumn>TOKENVARIABLEMAP_</localcolumn>
+          <targettable>JBPM_TOKENVARIABLEMAP</targettable>
+          <targetcolumn>ID_</targetcolumn>
         </foreignkey>
       </foreignkeys>
       <indexes>
-        <index name="fk_byteinst_array" unique="false">
+        <index name="FK_BYTEINST_ARRAY" unique="false">
           <columnnames>
-            <columnname>bytearrayvalue_</columnname>
+            <columnname>BYTEARRAYVALUE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_var_tskinst" unique="false">
+        <index name="FK_VAR_TSKINST" unique="false">
           <columnnames>
-            <columnname>taskinstance_</columnname>
+            <columnname>TASKINSTANCE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_varinst_prcinst" unique="false">
+        <index name="FK_VARINST_PRCINST" unique="false">
           <columnnames>
-            <columnname>processinstance_</columnname>
+            <columnname>PROCESSINSTANCE_</columnname>
           </columnnames>
         </index>
-        <index name="fk_varinst_tk" unique="false">
+        <index name="FK_VARINST_TK" unique="false">
           <columnnames>
-            <columnname>token_</columnname>
+            <columnname>TOKEN_</columnname>
           </columnnames>
         </index>
-        <index name="fk_varinst_tkvarmp" unique="false">
+        <index name="FK_VARINST_TKVARMP" unique="false">
           <columnnames>
-            <columnname>tokenvariablemap_</columnname>
+            <columnname>TOKENVARIABLEMAP_</columnname>
           </columnnames>
         </index>
-        <index name="idx_varinst_strval" unique="false">
+        <index name="IDX_VARINST_STRVAL" unique="false">
           <columnnames>
-            <columnname>name_</columnname>
-            <columnname>class_</columnname>
-            <columnname>stringvalue_</columnname>
-            <columnname>tokenvariablemap_</columnname>
+            <columnname>NAME_</columnname>
+            <columnname>CLASS_</columnname>
+            <columnname>STRINGVALUE_</columnname>
+            <columnname>TOKENVARIABLEMAP_</columnname>
           </columnnames>
         </index>
       </indexes>

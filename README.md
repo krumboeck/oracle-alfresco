@@ -10,16 +10,17 @@ THIS SOFTWARE COMES WITHOUT ANY WARRANTY!
 
 License
 -------
-GPL
+GPLv2
 
 
 Supported Alfresco Releases
 ---------------------------
-4.2.b
+4.2_b (branch)
+4.2_d (master)
 
 
 Building the AMP
 ----------------
     cd src
-    zip -r ../oracle-alfresco-4.2_b.amp *
+    zip -r ../oracle-alfresco-4.2_d.amp *
 

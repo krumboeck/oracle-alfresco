@@ -7,25 +7,35 @@
 
 create table ALF_APPLIED_PATCH
 (
-  ID                VARCHAR2(64 CHAR) not null,
-  DESCRIPTION       VARCHAR2(2048 CHAR),
-  FIXES_FROM_SCHEMA NUMBER(10),
-  FIXES_TO_SCHEMA   NUMBER(10),
-  APPLIED_TO_SCHEMA NUMBER(10),
-  TARGET_SCHEMA     NUMBER(10),
+  ID                VARCHAR2(64) not null,
+  DESCRIPTION       VARCHAR2(2048),
+  FIXES_FROM_SCHEMA NUMBER,
+  FIXES_TO_SCHEMA   NUMBER,
+  APPLIED_TO_SCHEMA NUMBER,
+  TARGET_SCHEMA     NUMBER,
   APPLIED_ON_DATE   TIMESTAMP(6),
-  APPLIED_TO_SERVER VARCHAR2(64 CHAR),
-  WAS_EXECUTED      NUMBER(1),
-  SUCCEEDED         NUMBER(1),
-  REPORT            VARCHAR2(2048 CHAR),
+  APPLIED_TO_SERVER VARCHAR2(64),
+  WAS_EXECUTED      NUMBER,
+  SUCCEEDED         NUMBER,
+  REPORT            VARCHAR2(2048),
   PRIMARY KEY (id)
 );
 
+create table ALF_LOCALE
+(
+  ID         NUMBER(19) not null,
+  VERSION    NUMBER(19) not null,
+  LOCALE_STR VARCHAR2(20 CHAR) not null,
+    PRIMARY KEY (id),
+    constraint locale_str UNIQUE (locale_str)
+);
+CREATE SEQUENCE ALF_LOCALE_SEQ START WITH 1 INCREMENT BY 1;
+
 create table ALF_NAMESPACE
 (
-  ID      NUMBER(19) not null,
-  VERSION NUMBER(19) not null,
-  URI     VARCHAR2(100 CHAR) not null,
+  ID      NUMBER not null,
+  VERSION NUMBER not null,
+  URI     VARCHAR2(100) not null,
    PRIMARY KEY (id),
    constraint uri UNIQUE (uri)  
 );
@@ -33,15 +43,14 @@ CREATE SEQUENCE ALF_NAMESPACE_SEQ START WITH 1 INCREMENT BY 1;
 
 create table ALF_QNAME
 (
-  ID         NUMBER(19) not null,
-  VERSION    NUMBER(19) not null,
-  NS_ID      NUMBER(19) not null,
-  LOCAL_NAME VARCHAR2(200 CHAR) not null,
+  ID         NUMBER not null,
+  VERSION    NUMBER not null,
+  NS_ID      NUMBER not null,
+  LOCAL_NAME VARCHAR2(200) not null,
   PRIMARY KEY (id),
   constraint ns_id UNIQUE (ns_id, local_name),  
   CONSTRAINT fk_alf_qname_ns FOREIGN KEY (ns_id) REFERENCES alf_namespace (id)
 );
-create index fk_alf_qname_ns on ALF_QNAME (ns_id);
 CREATE SEQUENCE ALF_QNAME_SEQ START WITH 1 INCREMENT BY 1;
 
 create table ALF_PERMISSION
@@ -162,51 +171,6 @@ create index fk_alf_autha_aut on ALF_AUTHORITY_ALIAS (auth_id);
 create index fk_alf_autha_ali on ALF_AUTHORITY_ALIAS (alias_id);
 CREATE SEQUENCE ALF_AUTHORITY_ALIAS_SEQ START WITH 1 INCREMENT BY 1;
 
-create table ALF_AUDIT_CONFIG
-(
-  ID         NUMBER(19) not null,
-  CONFIG_URL VARCHAR2(256 CHAR) not null,
-    PRIMARY KEY (id)
-);
-
-create table ALF_AUDIT_DATE
-(
-  ID            NUMBER(19) not null,
-  DATE_ONLY     DATE not null,
-  DAY_OF_YEAR   NUMBER(10) not null,
-  DAY_OF_MONTH  NUMBER(10) not null,
-  DAY_OF_WEEK   NUMBER(10) not null,
-  WEEK_OF_YEAR  NUMBER(10) not null,
-  WEEK_OF_MONTH NUMBER(10) not null,
-  MONTH         NUMBER(10) not null,
-  QUARTER       NUMBER(10) not null,
-  HALF_YEAR     NUMBER(10) not null,
-  FULL_YEAR     NUMBER(10) not null,
-   PRIMARY KEY (id)
-);
-create index IDX_ALF_ADTD_DAT on ALF_AUDIT_DATE (DATE_ONLY);
-create index IDX_ALF_ADTD_DOM on ALF_AUDIT_DATE (DAY_OF_MONTH);
-create index IDX_ALF_ADTD_DOW on ALF_AUDIT_DATE (DAY_OF_WEEK);
-create index IDX_ALF_ADTD_DOY on ALF_AUDIT_DATE (DAY_OF_YEAR);
-create index IDX_ALF_ADTD_FY on ALF_AUDIT_DATE (FULL_YEAR);
-create index IDX_ALF_ADTD_HY on ALF_AUDIT_DATE (HALF_YEAR);
-create index IDX_ALF_ADTD_M on ALF_AUDIT_DATE (MONTH);
-create index IDX_ALF_ADTD_Q on ALF_AUDIT_DATE (QUARTER);
-create index IDX_ALF_ADTD_WOM on ALF_AUDIT_DATE (WEEK_OF_MONTH);
-create index IDX_ALF_ADTD_WOY on ALF_AUDIT_DATE (WEEK_OF_YEAR);
-
-create table ALF_AUDIT_SOURCE
-(
-  ID          NUMBER(19) not null,
-  APPLICATION VARCHAR2(255 CHAR) not null,
-  SERVICE     VARCHAR2(255 CHAR),
-  METHOD      VARCHAR2(255 CHAR),
-  PRIMARY KEY (id)
-);
-create index idx_alf_adts_met on ALF_AUDIT_SOURCE (method);
-create index idx_alf_adts_ser on ALF_AUDIT_SOURCE (service);
-create index idx_alf_adts_app on ALF_AUDIT_SOURCE (application);
-
 create table ALF_SERVER
 (
   ID         NUMBER(19) not null,
@@ -228,7 +192,7 @@ create table ALF_TRANSACTION
    CONSTRAINT fk_alf_txn_svr FOREIGN KEY (server_id) REFERENCES alf_server (id)
 );
 create index fk_alf_txn_svr on ALF_TRANSACTION (server_id);
-create index idx_alf_txn_ctms on ALF_TRANSACTION (commit_time_ms);
+create index idx_alf_txn_ctms on ALF_TRANSACTION (commit_time_ms, id);
 CREATE SEQUENCE ALF_TRANSACTION_SEQ START WITH 1 INCREMENT BY 1;
 
 create table ALF_STORE
@@ -251,7 +215,7 @@ create table ALF_NODE
   UUID           VARCHAR2(36 CHAR) not null,
   TRANSACTION_ID NUMBER(19) not null,
   TYPE_QNAME_ID  NUMBER(19) not null,
-  locale_id      NUMBER(19) NOT NULL,
+  locale_id NUMBER NOT NULL,
   ACL_ID         NUMBER(19),
   AUDIT_CREATOR  VARCHAR2(255 CHAR),
   AUDIT_CREATED  VARCHAR2(30 CHAR),
@@ -263,12 +227,19 @@ create table ALF_NODE
     CONSTRAINT fk_alf_node_acl FOREIGN KEY (acl_id) REFERENCES alf_access_control_list (id),
     CONSTRAINT fk_alf_node_store FOREIGN KEY (store_id) REFERENCES alf_store (id),
     CONSTRAINT fk_alf_node_tqn FOREIGN KEY (type_qname_id) REFERENCES alf_qname (id),
-    CONSTRAINT fk_alf_node_txn FOREIGN KEY (transaction_id) REFERENCES alf_transaction (id)
+    CONSTRAINT fk_alf_node_txn FOREIGN KEY (transaction_id) REFERENCES alf_transaction (id),
+    CONSTRAINT fk_alf_node_loc FOREIGN KEY (locale_id) REFERENCES alf_locale (id)
 );
+CREATE INDEX idx_alf_node_mdq ON alf_node (store_id, type_qname_id, id);
+CREATE INDEX idx_alf_node_cor ON alf_node (audit_creator, store_id, type_qname_id, id);
+CREATE INDEX idx_alf_node_crd ON alf_node (audit_created, store_id, type_qname_id, id);
+CREATE INDEX idx_alf_node_mor ON alf_node (audit_modifier, store_id, type_qname_id, id);
+CREATE INDEX idx_alf_node_mod ON alf_node (audit_modified, store_id, type_qname_id, id);
+CREATE INDEX idx_alf_node_txn_type ON alf_node (transaction_id, type_qname_id);
 create index fk_alf_node_acl on ALF_NODE (acl_id);
 create index fk_alf_node_store on ALF_NODE (store_id);
 create index fk_alf_node_tqn on ALF_NODE (type_qname_id);
-create index fk_alf_node_txn on ALF_NODE (transaction_id);
+create index fk_alf_node_loc on ALF_NODE (locale_id);
 CREATE SEQUENCE ALF_NODE_SEQ START WITH 1 INCREMENT BY 1;
 
 alter table alf_store add CONSTRAINT fk_alf_store_root FOREIGN KEY (root_node_id) REFERENCES alf_node (id);
@@ -303,68 +274,6 @@ create index idx_alf_cass_qncrc on ALF_CHILD_ASSOC (qname_crc, type_qname_id, pa
 create index idx_alf_cass_pri on ALF_CHILD_ASSOC (parent_node_id, is_primary, child_node_id);
 CREATE SEQUENCE ALF_CHILD_ASSOC_SEQ START WITH 1 INCREMENT BY 1;
 
-create table ALF_LOCALE
-(
-  ID         NUMBER(19) not null,
-  VERSION    NUMBER(19) not null,
-  LOCALE_STR VARCHAR2(20 CHAR) not null,
-    PRIMARY KEY (id),
-    constraint locale_str UNIQUE (locale_str)
-);
-CREATE SEQUENCE ALF_LOCALE_SEQ START WITH 1 INCREMENT BY 1;
-
-create table ALF_ATTRIBUTES
-(
-  ID                 NUMBER(19) not null,
-  TYPE               VARCHAR2(1 CHAR) not null,
-  VERSION            NUMBER(19) not null,
-  ACL_ID             NUMBER(19),
-  BOOL_VALUE         NUMBER(1),
-  BYTE_VALUE         NUMBER(3),
-  SHORT_VALUE        NUMBER(5),
-  INT_VALUE          NUMBER(10),
-  LONG_VALUE         NUMBER(19),
-  FLOAT_VALUE        FLOAT,
-  DOUBLE_VALUE       FLOAT,
-  STRING_VALUE       VARCHAR2(1024 CHAR),
-  SERIALIZABLE_VALUE BLOB,
-    PRIMARY KEY (id),    
-    CONSTRAINT fk_alf_attr_acl FOREIGN KEY (acl_id) REFERENCES alf_access_control_list (id)
-);
-create index fk_alf_attr_acl on ALF_ATTRIBUTES (acl_id);
-
-create table ALF_GLOBAL_ATTRIBUTES
-(
-  NAME      VARCHAR2(160 CHAR) not null,
-  ATTRIBUTE NUMBER(19),
-    PRIMARY KEY (name),
-   constraint attribute UNIQUE  (attribute),  
-    CONSTRAINT fk_alf_gatt_att FOREIGN KEY (attribute) REFERENCES alf_attributes (id)
-);
-
-create table ALF_LIST_ATTRIBUTE_ENTRIES
-(
-  LIST_ID      NUMBER(19) not null,
-  MINDEX       NUMBER(10) not null,
-  ATTRIBUTE_ID NUMBER(19),
-    PRIMARY KEY (list_id, mindex),  
-    CONSTRAINT fk_alf_lent_att FOREIGN KEY (attribute_id) REFERENCES alf_attributes (id),
-    CONSTRAINT fk_alf_lent_latt FOREIGN KEY (list_id) REFERENCES alf_attributes (id)
-);
-create index fk_alf_lent_att on ALF_LIST_ATTRIBUTE_ENTRIES (attribute_id);
-create index fk_alf_lent_latt on ALF_LIST_ATTRIBUTE_ENTRIES (list_id);
-
-create table ALF_MAP_ATTRIBUTE_ENTRIES
-(
-  MAP_ID       NUMBER(19) not null,
-  MKEY         VARCHAR2(160 CHAR) not null,
-  ATTRIBUTE_ID NUMBER(19),
-    PRIMARY KEY (map_id, mkey), 
-    CONSTRAINT fk_alf_matt_att FOREIGN KEY (attribute_id) REFERENCES alf_attributes (id),
-    CONSTRAINT fk_alf_matt_matt FOREIGN KEY (map_id) REFERENCES alf_attributes (id)
-);
-create index fk_alf_matt_att on ALF_MAP_ATTRIBUTE_ENTRIES (attribute_id);
-create index fk_alf_matt_matt on ALF_MAP_ATTRIBUTE_ENTRIES (map_id);
 
 create table ALF_NODE_ASPECTS
 (
@@ -400,6 +309,9 @@ create table ALF_NODE_PROPERTIES
 create index fk_alf_nprop_n on ALF_NODE_PROPERTIES (node_id);
 create index fk_alf_nprop_qn on ALF_NODE_PROPERTIES (qname_id);
 create index fk_alf_nprop_loc on ALF_NODE_PROPERTIES (locale_id);
+CREATE INDEX idx_alf_nprop_s ON alf_node_properties (qname_id, string_value, node_id);
+CREATE INDEX idx_alf_nprop_l ON alf_node_properties (qname_id, long_value, node_id);
+
 
 create table ALF_NODE_ASSOC
 (

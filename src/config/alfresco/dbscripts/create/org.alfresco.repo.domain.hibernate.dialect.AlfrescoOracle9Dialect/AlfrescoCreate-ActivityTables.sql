@@ -13,7 +13,6 @@ create table ALF_ACTIVITY_FEED
   ACTIVITY_SUMMARY VARCHAR2(4000 CHAR),
   FEED_USER_ID     VARCHAR2(255 CHAR),
   ACTIVITY_TYPE    VARCHAR2(255 CHAR) not null,
-  ACTIVITY_FORMAT  VARCHAR2(10 CHAR),
   SITE_NETWORK     VARCHAR2(255 CHAR),
   APP_TOOL         VARCHAR2(36 CHAR),
   POST_USER_ID     VARCHAR2(255 CHAR) not null,
@@ -24,7 +23,6 @@ create index feed_postdate_idx on ALF_ACTIVITY_FEED (post_date);
 create index feed_postuserid_idx on ALF_ACTIVITY_FEED (post_user_id);
 create index feed_feeduserid_idx on ALF_ACTIVITY_FEED (feed_user_id);
 create index feed_sitenetwork_idx on ALF_ACTIVITY_FEED (site_network);
-create index feed_activityformat_idx on ALF_ACTIVITY_FEED (activity_format);
 CREATE SEQUENCE ALF_ACTIVITY_FEED_SEQ START WITH 1 INCREMENT BY 1;
 
 create table ALF_ACTIVITY_FEED_CONTROL

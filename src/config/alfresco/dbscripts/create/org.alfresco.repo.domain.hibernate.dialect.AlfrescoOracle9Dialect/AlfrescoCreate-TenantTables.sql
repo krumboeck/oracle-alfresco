@@ -24,5 +24,5 @@ INSERT INTO alf_applied_patch
   VALUES
   (
     'patch.db-V4.0-TenantTables', 'Manually executed script upgrade V4.0: Tenant Tables',
-    0, 6004, -1, 6005, sysdate, 'UNKNOWN', 1, 1, 'Script completed'
+    0, 6004, -1, 6005, null, 'UNKNOWN', 1, 1, 'Script completed'
   );

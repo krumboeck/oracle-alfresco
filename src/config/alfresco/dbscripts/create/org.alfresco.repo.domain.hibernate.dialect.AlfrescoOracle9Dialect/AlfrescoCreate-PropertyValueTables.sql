@@ -51,12 +51,13 @@ CREATE SEQUENCE alf_prop_double_value_seq START WITH 1 INCREMENT BY 1;
 CREATE TABLE alf_prop_string_value
 (
    id number(19) NOT NULL ,
-   string_value clob NOT NULL,
+   string_value varchar2(1024 CHAR) NOT NULL,
    string_end_lower varchar2(16 CHAR) NOT NULL,
    string_crc number(19) NOT NULL, 
    CONSTRAINT idx_alf_props_crc UNIQUE(string_end_lower, string_crc),
    PRIMARY KEY (id)
 ) ;
+create index idx_alf_props_str on alf_prop_string_value (string_value);
 CREATE SEQUENCE alf_prop_string_value_seq START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE alf_prop_serializable_value
@@ -100,6 +101,8 @@ CREATE TABLE alf_prop_link
    PRIMARY KEY (root_prop_id, contained_in, prop_index)
 ) ;
 create index idx_alf_propln_for on alf_prop_link(root_prop_id, key_prop_id, value_prop_id);
+create index fk_alf_propln_key on alf_prop_link(key_prop_id);
+create index fk_alf_propln_val on alf_prop_link(value_prop_id);
 
 CREATE TABLE alf_prop_unique_ctx
 (
@@ -109,13 +112,16 @@ CREATE TABLE alf_prop_unique_ctx
    value2_prop_id number(19) NOT NULL,
    value3_prop_id number(19) NOT NULL,
    prop1_id number(19),
-   CONSTRAINT  idx_alf_propuctx UNIQUE(value1_prop_id, value2_prop_id, value3_prop_id),
+   CONSTRAINT idx_alf_propuctx UNIQUE(value1_prop_id, value2_prop_id, value3_prop_id),
    CONSTRAINT fk_alf_propuctx_v1 FOREIGN KEY (value1_prop_id) REFERENCES alf_prop_value (id) ON DELETE CASCADE,
    CONSTRAINT fk_alf_propuctx_v2 FOREIGN KEY (value2_prop_id) REFERENCES alf_prop_value (id) ON DELETE CASCADE,
    CONSTRAINT fk_alf_propuctx_v3 FOREIGN KEY (value3_prop_id) REFERENCES alf_prop_value (id) ON DELETE CASCADE,
    CONSTRAINT fk_alf_propuctx_p1 FOREIGN KEY (prop1_id) REFERENCES alf_prop_root (id),
    PRIMARY KEY (id)
 ) ;
+CREATE INDEX fk_alf_propuctx_p1 ON alf_prop_unique_ctx (prop1_id);
+CREATE INDEX fk_alf_propuctx_v2 ON alf_prop_unique_ctx (value2_prop_id);
+CREATE INDEX fk_alf_propuctx_v3 ON alf_prop_unique_ctx (value3_prop_id);
 CREATE SEQUENCE alf_prop_unique_ctx_seq START WITH 1 INCREMENT BY 1;
 
 --
