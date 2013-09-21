@@ -8,23 +8,7 @@
 -- 
 --
 
---CREATE SEQUENCE alf_namespace_seq START WITH 1 INCREMENT BY 1;
---select set_seq_to_continue('alf_namespace_seq','HIBERNATE_SEQUENCE') from dual;
---column S new_val inc; ORA-00900
---select HIBERNATE_SEQUENCE.nextval  S from dual;
---alter sequence alf_namespace_seq increment by &inc;
---select alf_namespace_seq.nextval S from dual;
---alter sequence alf_namespace_seq increment by 1;
---select alf_namespace_seq.nextval from dual;
-
---CREATE SEQUENCE alf_qname_seq START WITH 1 INCREMENT BY 1;
---select set_seq_to_continue('alf_qname_seq','HIBERNATE_SEQUENCE') from dual;
---column S new_val inc; ORA-009000
---select HIBERNATE_SEQUENCE.nextval  S from dual;
---alter sequence alf_qname_seq increment by &inc;
---select alf_qname_seq.nextval S from dual;
---alter sequence alf_qname_seq increment by 1;
---select alf_qname_seq.nextval from dual;
+--ASSIGN:hibernate_seq_next_value=value
 select HIBERNATE_SEQUENCE.nextval as value from dual;
 
 CREATE SEQUENCE alf_namespace_seq START WITH ${hibernate_seq_next_value} INCREMENT BY 1;   -- (optional)
