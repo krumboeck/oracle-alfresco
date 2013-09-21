@@ -9,7 +9,7 @@ SELECT id FROM alf_locale WHERE locale_str = '.default';
 
 -- Add the column, using a default to fill
 ALTER TABLE alf_node
-    ADD COLUMN locale_id number NOT NULL DEFAULT ${def_locale_id}
+    ADD (locale_id number DEFAULT ${def_locale_id} NOT NULL)
 ;
 ALTER TABLE alf_node
     ADD CONSTRAINT fk_alf_node_loc FOREIGN KEY (locale_id) REFERENCES alf_locale (id)

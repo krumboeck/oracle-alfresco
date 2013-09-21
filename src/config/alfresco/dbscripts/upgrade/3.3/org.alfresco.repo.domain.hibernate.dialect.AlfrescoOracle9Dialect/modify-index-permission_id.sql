@@ -50,16 +50,14 @@ UPDATE alf_acl_member mem
 
 DROP TABLE alf_tmp_min_ace;
 
--- Remove duplicate aces the mysql way (as you can not use the deleted table in the where clause ...)
-
-CREATE TABLE tmp_to_delete AS SELECT ace.id FROM alf_acl_member mem RIGHT OUTER JOIN alf_access_control_entry ace ON mem.ace_id = ace.id WHERE mem.ace_id IS NULL;
-DELETE FROM alf_access_control_entry ace USING tmp_to_delete t WHERE ace.id = t.id;
-DROP TABLE tmp_to_delete;
+DELETE FROM alf_access_control_entry
+ WHERE id IN (SELECT ace.id FROM alf_acl_member mem RIGHT OUTER JOIN alf_access_control_entry ace ON mem.ace_id = ace.id WHERE mem.ace_id IS NULL);
 
 -- Add constraint for duplicate acls (this no longer includes the context)
 
 
-ALTER TABLE alf_access_control_entry DROP CONSTRAINT alf_access_control_entry_permission_id_key;
+ALTER TABLE alf_access_control_entry
+   DROP UNIQUE (permission_id, authority_id, allowed, applies, context_id);
 ALTER TABLE alf_access_control_entry
    ADD UNIQUE (permission_id, authority_id, allowed, applies);
 
