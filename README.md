@@ -20,6 +20,12 @@ Supported Alfresco Releases
 * 4.2_d (master)
 
 
+Upgrade Paths
+-------------
+    4.2_b ----> latest_version
+> Other paths may work, but not known.
+
+
 Building the AMP
 ----------------
     cd src
