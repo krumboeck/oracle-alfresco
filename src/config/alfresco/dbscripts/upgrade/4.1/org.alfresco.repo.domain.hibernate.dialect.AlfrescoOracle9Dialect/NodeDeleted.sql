@@ -95,7 +95,7 @@ insert into alf_node
 (id, version, store_id, uuid, transaction_id, type_qname_id, locale_id, acl_id, audit_creator, audit_created, audit_modifier, audit_modified, audit_accessed)
 (
     select
-       id, version, store_id, uuid, transaction_id, (case when node_deleted then ${DELETED_TYPE_ID} else type_qname_id end), locale_id, acl_id,
+       id, version, store_id, uuid, transaction_id, (case when node_deleted = 1 then ${DELETED_TYPE_ID} else type_qname_id end), locale_id, acl_id,
        audit_creator, audit_created, audit_modifier, audit_modified, audit_accessed
     from
        t_alf_node
