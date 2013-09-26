@@ -11,7 +11,11 @@
 select id from alf_namespace where uri = 'http://www.alfresco.org/model/system/1.0';
 
 
-insert into alf_qname (version, ns_id, local_name) values (0, ${SYSTEM_NS_ID}, 'deleted');         -- (optional)
+--ASSIGN:NEXT_ID=id
+select alf_qname_seq.nextval as id from dual;
+
+
+insert into alf_qname (id, version, ns_id, local_name) values (${NEXT_ID}, 0, ${SYSTEM_NS_ID}, 'deleted');         -- (optional)
 
 
 --ASSIGN:DELETED_TYPE_ID=id
@@ -91,7 +95,7 @@ insert into alf_node
 (id, version, store_id, uuid, transaction_id, type_qname_id, locale_id, acl_id, audit_creator, audit_created, audit_modifier, audit_modified, audit_accessed)
 (
     select
-       id, version, store_id, uuid, transaction_id, (case when node_deleted then ${DELETED_TYPE_ID} else type_qname_id end), locale_id, acl_id,
+       id, version, store_id, uuid, transaction_id, (case when node_deleted = 1 then ${DELETED_TYPE_ID} else type_qname_id end), locale_id, acl_id,
        audit_creator, audit_created, audit_modifier, audit_modified, audit_accessed
     from
        t_alf_node

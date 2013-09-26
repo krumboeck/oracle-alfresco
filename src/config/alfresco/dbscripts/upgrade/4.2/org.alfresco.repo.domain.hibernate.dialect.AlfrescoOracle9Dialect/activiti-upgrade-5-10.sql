@@ -11,13 +11,13 @@
 --
 
 alter table ACT_RU_EXECUTION 
-add SUSPENSION_STATE_ number(10);
+add (SUSPENSION_STATE_ number(10));
 
 alter table ACT_RE_PROCDEF
-add SUSPENSION_STATE_ number(10);
+add (SUSPENSION_STATE_ number(10));
 
 alter table ACT_RE_PROCDEF
-add REV_ number(10);
+add (REV_ number(10));
 
 update ACT_RE_PROCDEF set REV_ = 1;
 update ACT_RE_PROCDEF set SUSPENSION_STATE_ = 1;
@@ -45,7 +45,7 @@ alter table ACT_RU_EVENT_SUBSCR
     references ACT_RU_EXECUTION(ID_);
     
 alter table ACT_RU_EXECUTION 
-add IS_EVENT_SCOPE_ number;
+add (IS_EVENT_SCOPE_ number);
 
 update ACT_RU_EXECUTION set IS_EVENT_SCOPE_ = 0;
 
@@ -53,7 +53,7 @@ alter table ACT_HI_PROCINST
 add DELETE_REASON_ nvarchar2(2000);
 
 alter table ACT_GE_BYTEARRAY 
-add GENERATED_ number(1);
+add (GENERATED_ number(1));
 
 update ACT_GE_BYTEARRAY set GENERATED_ = 0;
 
@@ -72,7 +72,7 @@ alter table ACT_RU_IDENTITYLINK
     references ACT_RE_PROCDEF (ID_);
     
 alter table ACT_RU_EXECUTION 
-        add CACHED_ENT_STATE_ number(10);
+        add (CACHED_ENT_STATE_ number(10));
 
 update ACT_RU_EXECUTION set CACHED_ENT_STATE_ = 7;
 

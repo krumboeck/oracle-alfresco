@@ -7,9 +7,9 @@
 
 -- Rename redundant 'version' to indexed 'commit_time_ms' 
 ALTER TABLE alf_acl_change_set
-   RENAME "version"  TO commit_time_ms;
+   RENAME COLUMN version TO commit_time_ms;
 ALTER TABLE alf_acl_change_set
-   ALTER COLUMN commit_time_ms DROP NOT NULL;
+   MODIFY (commit_time_ms NULL);
 
 -- Fill with data
 --FOREACH alf_acl_change_set.id system.upgrade.alf_acl_change_set.batchsize
