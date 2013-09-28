@@ -22,8 +22,11 @@ Supported Alfresco Releases
 
 Upgrade Paths
 -------------
-    4.2_b ----> latest_version
+    3.4_d ----> 3.4.d
+    4.0_b ----> 3.4.d
+    4.2_b ----> 3.4.d
 > Other paths may work, but not known.
+> Caution: Upgrades are not well tested and may cause problems. Always use a test environment to test the upgrade. A better idea is to use a second environment, to which you can switch over, when upgrade was successful.
 
 
 Building the AMP
