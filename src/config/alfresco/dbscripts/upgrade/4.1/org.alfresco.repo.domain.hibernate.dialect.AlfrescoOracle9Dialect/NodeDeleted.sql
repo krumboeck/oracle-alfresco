@@ -28,14 +28,15 @@ drop index fk_alf_node_acl;
 drop index fk_alf_node_txn;
 drop index fk_alf_node_store;
 drop index fk_alf_node_tqn;
-drop index fk_alf_node_loc;
+drop index fk_alf_node_loc; -- (optional)
 drop index fk_alf_store_root;
 
+alter table alf_node drop constraint store_id;
 alter table alf_node drop constraint fk_alf_node_acl;
 alter table alf_node drop constraint fk_alf_node_store;
 alter table alf_node drop constraint fk_alf_node_tqn;
 alter table alf_node drop constraint fk_alf_node_txn;
-alter table alf_node drop constraint fk_alf_node_loc;
+alter table alf_node drop constraint fk_alf_node_loc; -- (optional)
 alter table alf_node drop constraint alf_node_store_id_key;  -- (optional)
 
 alter table alf_store drop constraint fk_alf_store_root;
