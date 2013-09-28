@@ -6,6 +6,8 @@
 
 
 -- Cut the original table to just the data
+ALTER TABLE alf_node_assoc DROP primary key;
+ALTER TABLE alf_node_assoc DROP constraint source_node_id;
 DROP INDEX source_node_id;                      --(optional)
 DROP INDEX alf_node_assoc_source_node_id_key;   --(optional)
 DROP INDEX fk_alf_nass_snode;
