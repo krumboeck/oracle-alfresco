@@ -2009,7 +2009,7 @@
       </primarykey>
       <foreignkeys/>
       <indexes>
-        <index name="IDX_ALF_PROPDT_DT" unique="false">
+        <index name="IDX_ALF_PROP_DATE" unique="false">
           <columnnames>
             <columnname>FULL_YEAR</columnname>
             <columnname>MONTH_OF_YEAR</columnname>
@@ -2038,7 +2038,7 @@
       </primarykey>
       <foreignkeys/>
       <indexes>
-        <index name="IDX_ALF_PROPD_VAL" unique="true">
+        <index name="IDX_ALF_PROP_VAL" unique="true">
           <columnnames>
             <columnname>DOUBLE_VALUE</columnname>
           </columnnames>

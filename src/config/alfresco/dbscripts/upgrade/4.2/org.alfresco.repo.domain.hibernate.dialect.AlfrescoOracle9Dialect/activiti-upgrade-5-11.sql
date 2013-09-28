@@ -15,10 +15,10 @@ alter table ACT_RE_PROCDEF
     modify VERSION_ not null;
     
 alter table ACT_RE_DEPLOYMENT 
-    add CATEGORY_ varchar(255);
+    add CATEGORY_ nvarchar2(255);
 
 alter table ACT_RE_PROCDEF
-    add DESCRIPTION_ VARCHAR2(4000);  
+    add DESCRIPTION_ NVARCHAR2(2000);  
     
 alter table ACT_RU_EXECUTION
     add constraint ACT_FK_EXE_PROCDEF 
@@ -78,7 +78,7 @@ create table ACT_HI_VARINST (
     VAR_TYPE_ NVARCHAR2(100),
     REV_ NUMBER(10),
     BYTEARRAY_ID_ NVARCHAR2(64),
-    DOUBLE_ FLOAT,
+    DOUBLE_ NUMBER(38,10),
     LONG_ NUMBER(19),
     TEXT_ NVARCHAR2(2000),
     TEXT2_ NVARCHAR2(2000),
