@@ -266,8 +266,8 @@ create table ALF_CHILD_ASSOC
     CONSTRAINT fk_alf_cass_qnns FOREIGN KEY (qname_ns_id) REFERENCES alf_namespace (id),
     CONSTRAINT fk_alf_cass_tqn FOREIGN KEY (type_qname_id) REFERENCES alf_qname (id)
 );
+create index idx_alf_cass_pnode on alf_child_assoc (parent_node_id, assoc_index, id);
 create index fk_alf_cass_cnode on ALF_CHILD_ASSOC (child_node_id);
-create index fk_alf_cass_pnode on ALF_CHILD_ASSOC (parent_node_id);
 create index fk_alf_cass_qnns on ALF_CHILD_ASSOC (qname_ns_id);
 create index fk_alf_cass_tqn on ALF_CHILD_ASSOC (type_qname_id);
 create index idx_alf_cass_qncrc on ALF_CHILD_ASSOC (qname_crc, type_qname_id, parent_node_id);

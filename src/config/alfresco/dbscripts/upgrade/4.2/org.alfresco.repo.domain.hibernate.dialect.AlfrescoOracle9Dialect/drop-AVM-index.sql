@@ -174,6 +174,8 @@ CREATE INDEX ACT_IDX_EXE_PROCDEF on ACT_RU_EXECUTION (PROC_DEF_ID_); -- (optiona
 
 
 DROP INDEX IDX_AVM_VR_REVUQ; -- (optional)
+alter table avm_version_roots drop constraint avm_version_roots_version_id_avm_store_id_key;    --(optional)
+alter table avm_version_roots drop constraint avm_version_roots_version_id_key;                 --(optional)
 alter table avm_version_roots add constraint idx_avm_vr_uq unique (avm_store_id, version_id); -- (optional)
 
 
