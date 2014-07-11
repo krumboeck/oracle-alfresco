@@ -240,7 +240,7 @@ create index fk_alf_node_acl on ALF_NODE (acl_id);
 create index fk_alf_node_store on ALF_NODE (store_id);
 create index fk_alf_node_tqn on ALF_NODE (type_qname_id);
 create index fk_alf_node_loc on ALF_NODE (locale_id);
-CREATE SEQUENCE ALF_NODE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_NODE_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 alter table alf_store add CONSTRAINT fk_alf_store_root FOREIGN KEY (root_node_id) REFERENCES alf_node (id);
 create index fk_alf_store_root on ALF_STORE (root_node_id); 
