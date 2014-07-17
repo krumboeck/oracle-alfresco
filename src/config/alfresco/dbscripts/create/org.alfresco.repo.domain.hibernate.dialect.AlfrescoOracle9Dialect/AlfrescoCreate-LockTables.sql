@@ -19,7 +19,7 @@ alter table alf_lock_resource
   references alf_namespace (ID) on delete set null;
 CREATE UNIQUE INDEX idx_alf_lockr_key ON alf_lock_resource (qname_ns_id, qname_localname);
 
-CREATE SEQUENCE alf_lock_resource_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_lock_resource_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_lock
 (
@@ -43,7 +43,7 @@ CREATE INDEX fk_alf_lock_excl ON alf_lock (excl_resource_id);
 CREATE UNIQUE INDEX idx_alf_lock_key ON alf_lock (shared_resource_id, excl_resource_id);
 
 
-CREATE SEQUENCE alf_lock_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_lock_seq START WITH 1 INCREMENT BY 1 ORDER;
 --
 -- Record script finish
 --

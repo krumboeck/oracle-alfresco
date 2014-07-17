@@ -75,7 +75,7 @@
         length number(19),
         primary key (id)
     ) ;
-CREATE SEQUENCE avm_nodes_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE avm_nodes_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 
     create table avm_store_properties (
@@ -93,7 +93,7 @@ CREATE SEQUENCE avm_nodes_seq START WITH 1 INCREMENT BY 1;
         serializable_value blob,
         primary key (id)
     ) ;
-CREATE SEQUENCE avm_store_properties_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE avm_store_properties_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 
     create table avm_stores (
@@ -105,7 +105,7 @@ CREATE SEQUENCE avm_store_properties_seq START WITH 1 INCREMENT BY 1;
         acl_id number(19),
         primary key (id)
     ) ;
-CREATE SEQUENCE avm_stores_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE avm_stores_seq START WITH 1 INCREMENT BY 1 ORDER;
 
     create table avm_version_layered_node_entry (
         version_root_id number(19) not null,
@@ -125,7 +125,7 @@ CREATE SEQUENCE avm_stores_seq START WITH 1 INCREMENT BY 1;
         description VARCHAR2(1024 CHAR),
         primary key (id)
     ) ;
-CREATE SEQUENCE avm_version_roots_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE avm_version_roots_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 alter table avm_version_roots
     add constraint idx_avm_vr_uq

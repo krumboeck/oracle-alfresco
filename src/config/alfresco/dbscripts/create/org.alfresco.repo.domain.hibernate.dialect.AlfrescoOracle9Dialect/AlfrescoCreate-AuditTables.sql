@@ -17,7 +17,7 @@ CREATE TABLE alf_audit_model
    PRIMARY KEY (id)
 );
 CREATE INDEX fk_alf_aud_mod_cd ON alf_audit_model(content_data_id);
-CREATE SEQUENCE alf_audit_model_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_audit_model_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_audit_app
 (
@@ -34,7 +34,7 @@ CREATE TABLE alf_audit_app
 );
 CREATE INDEX fk_alf_aud_app_mod ON alf_audit_app(audit_model_id);
 CREATE INDEX fk_alf_aud_app_dis ON alf_audit_app(disabled_paths_id);
-CREATE SEQUENCE alf_audit_app_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_audit_app_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_audit_entry
 (
@@ -52,7 +52,7 @@ create index idx_alf_aud_ent_tm on alf_audit_entry(audit_time);
 CREATE INDEX fk_alf_aud_ent_app ON alf_audit_entry(audit_app_id);
 CREATE INDEX fk_alf_aud_ent_use ON alf_audit_entry(audit_user_id);
 CREATE INDEX fk_alf_aud_ent_pro ON alf_audit_entry(audit_values_id);
-CREATE SEQUENCE alf_audit_entry_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_audit_entry_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 --
 -- Record script finish

@@ -20,7 +20,7 @@ CREATE TABLE alf_prop_class
    PRIMARY KEY (id)
 ) ;
 create index idx_alf_propc_clas on alf_prop_class(java_class_name);
-CREATE SEQUENCE alf_prop_class_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_class_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_prop_date_value
 (
@@ -45,7 +45,7 @@ CREATE TABLE alf_prop_double_value
    CONSTRAINT idx_alf_prop_val UNIQUE(double_value),
    PRIMARY KEY (id)
 ) ;
-CREATE SEQUENCE alf_prop_double_value_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_double_value_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 -- Stores unique, case-sensitive string values --
 CREATE TABLE alf_prop_string_value
@@ -58,7 +58,7 @@ CREATE TABLE alf_prop_string_value
    PRIMARY KEY (id)
 ) ;
 create index idx_alf_props_str on alf_prop_string_value (string_value);
-CREATE SEQUENCE alf_prop_string_value_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_string_value_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_prop_serializable_value
 (
@@ -66,7 +66,7 @@ CREATE TABLE alf_prop_serializable_value
    serializable_value BLOB NOT NULL,
    PRIMARY KEY (id)
 ) ;
-CREATE SEQUENCE alf_prop_ser_value_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_ser_value_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_prop_value
 (
@@ -78,7 +78,7 @@ CREATE TABLE alf_prop_value
    PRIMARY KEY (id)
 ) ;
 create index idx_alf_propv_per on alf_prop_value(persisted_type, long_value);
-CREATE SEQUENCE alf_prop_value_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_value_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_prop_root
 (
@@ -86,7 +86,7 @@ CREATE TABLE alf_prop_root
    version number(10) NOT NULL,
    PRIMARY KEY (id)
 ) ;
-CREATE SEQUENCE alf_prop_root_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_root_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_prop_link
 (
@@ -122,7 +122,7 @@ CREATE TABLE alf_prop_unique_ctx
 CREATE INDEX fk_alf_propuctx_p1 ON alf_prop_unique_ctx (prop1_id);
 CREATE INDEX fk_alf_propuctx_v2 ON alf_prop_unique_ctx (value2_prop_id);
 CREATE INDEX fk_alf_propuctx_v3 ON alf_prop_unique_ctx (value3_prop_id);
-CREATE SEQUENCE alf_prop_unique_ctx_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_prop_unique_ctx_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 --
 -- Record script finish

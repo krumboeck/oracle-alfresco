@@ -29,7 +29,7 @@ create table ALF_LOCALE
     PRIMARY KEY (id),
     constraint locale_str UNIQUE (locale_str)
 );
-CREATE SEQUENCE ALF_LOCALE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_LOCALE_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_NAMESPACE
 (
@@ -39,7 +39,7 @@ create table ALF_NAMESPACE
    PRIMARY KEY (id),
    constraint uri UNIQUE (uri)  
 );
-CREATE SEQUENCE ALF_NAMESPACE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_NAMESPACE_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_QNAME
 (
@@ -51,7 +51,7 @@ create table ALF_QNAME
   constraint ns_id UNIQUE (ns_id, local_name),  
   CONSTRAINT fk_alf_qname_ns FOREIGN KEY (ns_id) REFERENCES alf_namespace (id)
 );
-CREATE SEQUENCE ALF_QNAME_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_QNAME_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_PERMISSION
 (
@@ -64,7 +64,7 @@ create table ALF_PERMISSION
   CONSTRAINT fk_alf_perm_tqn FOREIGN KEY (type_qname_id) REFERENCES alf_qname (id)
 );
 create index fk_alf_perm_tqn on ALF_PERMISSION (type_qname_id);
-CREATE SEQUENCE ALF_PERMISSION_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_PERMISSION_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACE_CONTEXT
 (
@@ -75,7 +75,7 @@ create table ALF_ACE_CONTEXT
   KVP_CONTEXT      VARCHAR2(1024 CHAR),
    PRIMARY KEY (id)
 );
-CREATE SEQUENCE ALF_ACE_CONTEXT_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACE_CONTEXT_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_AUTHORITY
 (
@@ -87,7 +87,7 @@ create table ALF_AUTHORITY
     constraint authority UNIQUE (authority, crc)
  );
 create index idx_alf_auth_aut on ALF_AUTHORITY (authority);
-CREATE SEQUENCE ALF_AUTHORITY_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_AUTHORITY_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACCESS_CONTROL_ENTRY
 (
@@ -107,7 +107,7 @@ create table ALF_ACCESS_CONTROL_ENTRY
 create index fk_alf_ace_auth on ALF_ACCESS_CONTROL_ENTRY (authority_id);
 create index fk_alf_ace_ctx on ALF_ACCESS_CONTROL_ENTRY (context_id);
 create index fk_alf_ace_perm on ALF_ACCESS_CONTROL_ENTRY (permission_id);
-CREATE SEQUENCE ALF_ACCESS_CONTROL_ENTRY_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACCESS_CONTROL_ENTRY_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACL_CHANGE_SET
 (
@@ -116,7 +116,7 @@ create table ALF_ACL_CHANGE_SET
   PRIMARY KEY (id)
 );
 CREATE INDEX idx_alf_acs_ctms ON alf_acl_change_set (commit_time_ms);
-CREATE SEQUENCE ALF_ACL_CHANGE_SET_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACL_CHANGE_SET_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACCESS_CONTROL_LIST
 (
@@ -138,7 +138,7 @@ create table ALF_ACCESS_CONTROL_LIST
 );
 create index fk_alf_acl_acs on ALF_ACCESS_CONTROL_LIST (acl_change_set);
 create index idx_alf_acl_inh on ALF_ACCESS_CONTROL_LIST (inherits, inherits_from);
-CREATE SEQUENCE ALF_ACCESS_CONTROL_LIST_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACCESS_CONTROL_LIST_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACL_MEMBER
 (
@@ -154,7 +154,7 @@ create table ALF_ACL_MEMBER
 );
 create index fk_alf_aclm_ace on ALF_ACL_MEMBER (ace_id);
 create index fk_alf_aclm_acl on ALF_ACL_MEMBER (acl_id);
-CREATE SEQUENCE ALF_ACL_MEMBER_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACL_MEMBER_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_AUTHORITY_ALIAS
 (
@@ -169,7 +169,7 @@ create table ALF_AUTHORITY_ALIAS
 );
 create index fk_alf_autha_aut on ALF_AUTHORITY_ALIAS (auth_id);
 create index fk_alf_autha_ali on ALF_AUTHORITY_ALIAS (alias_id);
-CREATE SEQUENCE ALF_AUTHORITY_ALIAS_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_AUTHORITY_ALIAS_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_SERVER
 (
@@ -179,7 +179,7 @@ create table ALF_SERVER
      PRIMARY KEY (id),
     constraint  ip_address UNIQUE  (ip_address)
 );
-CREATE SEQUENCE ALF_SERVER_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_SERVER_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_TRANSACTION
 (
@@ -193,7 +193,7 @@ create table ALF_TRANSACTION
 );
 create index fk_alf_txn_svr on ALF_TRANSACTION (server_id);
 create index idx_alf_txn_ctms on ALF_TRANSACTION (commit_time_ms, id);
-CREATE SEQUENCE ALF_TRANSACTION_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_TRANSACTION_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_STORE
 (
@@ -205,7 +205,7 @@ create table ALF_STORE
   PRIMARY KEY (id),
   constraint  protocol UNIQUE  (protocol, identifier) 
 );
-CREATE SEQUENCE ALF_STORE_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_STORE_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_NODE
 (
@@ -272,7 +272,7 @@ create index fk_alf_cass_qnns on ALF_CHILD_ASSOC (qname_ns_id);
 create index fk_alf_cass_tqn on ALF_CHILD_ASSOC (type_qname_id);
 create index idx_alf_cass_qncrc on ALF_CHILD_ASSOC (qname_crc, type_qname_id, parent_node_id);
 create index idx_alf_cass_pri on ALF_CHILD_ASSOC (parent_node_id, is_primary, child_node_id);
-CREATE SEQUENCE ALF_CHILD_ASSOC_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_CHILD_ASSOC_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 
 create table ALF_NODE_ASPECTS
@@ -330,4 +330,4 @@ create table ALF_NODE_ASSOC
 CREATE INDEX fk_alf_nass_snode ON alf_node_assoc (source_node_id, type_qname_id, assoc_index);
 CREATE INDEX fk_alf_nass_tnode ON alf_node_assoc (target_node_id, type_qname_id);
 CREATE INDEX fk_alf_nass_tqn ON alf_node_assoc (type_qname_id);
-CREATE SEQUENCE ALF_NODE_ASSOC_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_NODE_ASSOC_SEQ START WITH 1 INCREMENT BY 1 ORDER;

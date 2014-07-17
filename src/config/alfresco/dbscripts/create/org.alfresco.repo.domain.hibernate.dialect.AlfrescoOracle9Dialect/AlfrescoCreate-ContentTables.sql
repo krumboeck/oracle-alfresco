@@ -15,7 +15,7 @@ CREATE TABLE alf_mimetype
    PRIMARY KEY (id),
    UNIQUE (mimetype_str)
 );
-CREATE SEQUENCE alf_mimetype_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_mimetype_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE TABLE alf_encoding
 (
@@ -25,7 +25,7 @@ CREATE TABLE alf_encoding
    PRIMARY KEY (id),
    UNIQUE (encoding_str)
 );
-CREATE SEQUENCE alf_encoding_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_encoding_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 
 -- This table may exist during upgrades, but must be removed.
@@ -41,7 +41,7 @@ CREATE TABLE alf_content_url
    orphan_time number(19) NULL,
    PRIMARY KEY (id)
 );
-CREATE SEQUENCE alf_content_url_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_content_url_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 CREATE UNIQUE INDEX idx_alf_conturl_cr ON alf_content_url (content_url_short, content_url_crc);
 CREATE INDEX idx_alf_conturl_ot ON alf_content_url (orphan_time);
@@ -66,14 +66,14 @@ CREATE INDEX fk_alf_cont_url ON alf_content_data (content_url_id);
 CREATE INDEX fk_alf_cont_mim ON alf_content_data (content_mimetype_id);
 CREATE INDEX fk_alf_cont_enc ON alf_content_data (content_encoding_id);
 CREATE INDEX fk_alf_cont_loc ON alf_content_data (content_locale_id);
-CREATE SEQUENCE alf_content_data_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_content_data_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 --CREATE TABLE alf_content_clean
 --(
 --   content_url VARCHAR2(255) NOT NULL  
 --);
 --create index idx_alf_contentclean_url on alf_content_clean(content_url);
---CREATE SEQUENCE alf_content_clean_seq START WITH 1 INCREMENT BY 1;
+--CREATE SEQUENCE alf_content_clean_seq START WITH 1 INCREMENT BY 1 ORDER;
 
 --
 -- Record script finish

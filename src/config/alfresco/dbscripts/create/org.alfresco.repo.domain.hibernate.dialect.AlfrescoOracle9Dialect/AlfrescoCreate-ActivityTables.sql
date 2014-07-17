@@ -23,7 +23,7 @@ create index feed_postdate_idx on ALF_ACTIVITY_FEED (post_date);
 create index feed_postuserid_idx on ALF_ACTIVITY_FEED (post_user_id);
 create index feed_feeduserid_idx on ALF_ACTIVITY_FEED (feed_user_id);
 create index feed_sitenetwork_idx on ALF_ACTIVITY_FEED (site_network);
-CREATE SEQUENCE ALF_ACTIVITY_FEED_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACTIVITY_FEED_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 create table ALF_ACTIVITY_FEED_CONTROL
 (
@@ -35,7 +35,7 @@ create table ALF_ACTIVITY_FEED_CONTROL
     PRIMARY KEY (id)
 );
 create index feedctrl_feeduserid_idx on ALF_ACTIVITY_FEED_CONTROL (feed_user_id);
-CREATE SEQUENCE ALF_ACTIVITY_FEED_CONTROL_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACTIVITY_FEED_CONTROL_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 
 create table ALF_ACTIVITY_POST
@@ -54,7 +54,7 @@ create table ALF_ACTIVITY_POST
 );
 create index post_jobtasknode_idx on ALF_ACTIVITY_POST (job_task_node);
 create index post_status_idx on ALF_ACTIVITY_POST (status);
-CREATE SEQUENCE ALF_ACTIVITY_POST_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE ALF_ACTIVITY_POST_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 --
 -- Record script finish

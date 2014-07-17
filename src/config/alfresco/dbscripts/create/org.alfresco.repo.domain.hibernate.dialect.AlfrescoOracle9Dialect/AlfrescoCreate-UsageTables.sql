@@ -16,7 +16,7 @@ CREATE TABLE alf_usage_delta
     CONSTRAINT fk_alf_usaged_n FOREIGN KEY (node_id) REFERENCES alf_node (id)
 ); -- (optional)
 create index fk_alf_usaged_n on alf_usage_delta (node_id);
-CREATE SEQUENCE alf_usage_delta_SEQ START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE alf_usage_delta_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
 --
 -- Record script finish
