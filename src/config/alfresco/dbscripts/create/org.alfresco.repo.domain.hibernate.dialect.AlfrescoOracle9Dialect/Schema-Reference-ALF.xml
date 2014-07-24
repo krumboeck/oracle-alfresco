@@ -1551,9 +1551,11 @@
             <columnname>STORE_ID</columnname>
           </columnnames>
         </index>
-        <index name="FK_ALF_NODE_TQN" unique="false">
+        <index name="IDX_FK_ALF_NODE_TQN" unique="false">
           <columnnames>
             <columnname>TYPE_QNAME_ID</columnname>
+            <columnname>STORE_ID</columnname>
+            <columnname>ID</columnname>
           </columnnames>
         </index>
         <index name="IDX_ALF_NODE_TXN_TYPE" unique="false">

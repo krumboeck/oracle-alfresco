@@ -238,7 +238,7 @@ CREATE INDEX idx_alf_node_mod ON alf_node (audit_modified, store_id, type_qname_
 CREATE INDEX idx_alf_node_txn_type ON alf_node (transaction_id, type_qname_id);
 create index fk_alf_node_acl on ALF_NODE (acl_id);
 create index fk_alf_node_store on ALF_NODE (store_id);
-create index fk_alf_node_tqn on ALF_NODE (type_qname_id);
+CREATE INDEX idx_alf_node_tqn ON alf_node (type_qname_id, store_id, id);
 create index fk_alf_node_loc on ALF_NODE (locale_id);
 CREATE SEQUENCE ALF_NODE_SEQ START WITH 1 INCREMENT BY 1 ORDER;
 
