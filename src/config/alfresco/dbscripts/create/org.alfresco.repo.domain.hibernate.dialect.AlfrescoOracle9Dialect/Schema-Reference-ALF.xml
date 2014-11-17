@@ -25,6 +25,7 @@
     <sequence name="ALF_CHILD_ASSOC_SEQ"/>
     <sequence name="ALF_CONTENT_DATA_SEQ"/>
     <sequence name="ALF_CONTENT_URL_SEQ"/>
+    <sequence name="ALF_CONTENT_URL_ENC_SEQ"/>
     <sequence name="ALF_ENCODING_SEQ"/>
     <sequence name="ALF_LOCALE_SEQ"/>
     <sequence name="ALF_LOCK_RESOURCE_SEQ"/>
@@ -1177,6 +1178,74 @@
           <columnnames>
             <columnname>CONTENT_SIZE</columnname>
             <columnname>ID</columnname>
+          </columnnames>
+        </index>
+      </indexes>
+    </table>
+    <table name="ALF_CONTENT_URL_ENCRYPTION">
+      <columns>
+        <column name="ID" order="1">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="CONTENT_URL_ID" order="2">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ALGORITHM" order="3">
+          <type>varchar2(10 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="KEY_SIZE" order="4">
+          <type>number</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="ENCRYPTED_KEY" order="5">
+          <type>blob</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MASTER_KEYSTORE_ID" order="6">
+          <type>varchar2(20 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="MASTER_KEY_ALIAS" order="7">
+          <type>varchar2(15 char)</type>
+          <nullable>false</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+        <column name="UNENCRYPTED_FILE_SIZE" order="8">
+          <type>number</type>
+          <nullable>true</nullable>
+          <autoincrement>false</autoincrement>
+        </column>
+      </columns>
+      <primarykey name="ALF_CONTENT_URL_ENCRYPTION_PKEY">
+        <columnnames>
+          <columnname order="1">ID</columnname>
+        </columnnames>
+      </primarykey>
+      <foreignkeys>
+        <foreignkey name="FK_ALF_CONT_ENC_URL">
+          <localcolumn>CONTENT_URL_ID</localcolumn>
+          <targettable>ALF_CONTENT_URL</targettable>
+          <targetcolumn>ID</targetcolumn>
+        </foreignkey>
+      </foreignkeys>
+      <indexes>
+        <index name="IDX_ALF_CONT_ENC_URL" unique="true">
+          <columnnames>
+            <columnname>CONTENT_URL_ID</columnname>
+          </columnnames>
+        </index>
+        <index name="IDX_ALF_CONT_ENC_MKA" unique="false">
+          <columnnames>
+            <columnname>MASTER_KEY_ALIAS</columnname>
           </columnnames>
         </index>
       </indexes>
