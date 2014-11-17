@@ -22,5 +22,6 @@ Supported Alfresco Releases
 * 4.2_d (branch)
 * 4.2_e (branch)
 * 4.2_f (branch)
-* 5.0_a (master)
+* 5.0_a (branch, not fully tested)
+* 5.0_b (master, not fully tested)
 
