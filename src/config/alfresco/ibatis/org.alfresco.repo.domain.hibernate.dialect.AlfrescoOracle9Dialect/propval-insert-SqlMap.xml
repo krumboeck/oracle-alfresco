@@ -36,7 +36,7 @@
         
     </insert>
 
-    <insert id="insert_PropertySerializableValue" parameterMap="parameter_IdPropertySerializableValue" >
+    <insert id="insert_PropertySerializableValue" parameterMap="alfresco.propval.parameter_IdPropertySerializableValue" >
         
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_ser_value_seq.NEXTVAL as value from dual            
@@ -58,7 +58,7 @@
         
     </insert>
 
-    <insert id="insert_PropertyRoot" parameterMap="parameter_IdPropertyRoot" >
+    <insert id="insert_PropertyRoot" parameterMap="alfresco.propval.parameter_IdPropertyRoot" >
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_root_seq.NEXTVAL as value from dual           
         </selectKey>

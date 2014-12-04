@@ -37,10 +37,18 @@
     <insert id="insert_ContentData" parameterType="ContentData" >
     
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
-			select alf_content_data_seq.NEXTVAL as value from dual           
+		select alf_content_data_seq.NEXTVAL as value from dual           
         </selectKey>
         <include refid="alfresco.content.insert_ContentData_Sequence"/>
         
+    </insert>
+
+    <insert id="insert_KeyData" parameterType="ContentUrlKey">
+        <selectKey resultType="long" keyProperty="id" order="BEFORE" >
+		select nextVal('alf_content_url_enc_seq')
+        </selectKey>
+
+        <include refid="alfresco.content.insert_KeyData_Sequence"/>
     </insert>
     
 </mapper>
