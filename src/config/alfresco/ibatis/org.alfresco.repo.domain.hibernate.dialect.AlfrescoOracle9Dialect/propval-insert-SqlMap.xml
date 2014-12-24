@@ -62,14 +62,14 @@
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_root_seq.NEXTVAL as value from dual           
         </selectKey>
-        <include refid="insert_PropertyRoot_Sequence"/>
+        <include refid="alfresco.propval.insert_PropertyRoot_Sequence"/>
     </insert>
 
     <insert id="insert_PropertyUniqueContext" parameterType="PropertyUniqueContext" >
         <selectKey resultType="long" keyProperty="id" order="BEFORE" >
 		select alf_prop_unique_ctx_seq.NEXTVAL as value from dual           
         </selectKey>
-        <include refid="insert_PropertyUniqueContext_Sequence"/>
+        <include refid="alfresco.propval.insert_PropertyUniqueContext_Sequence"/>
     </insert>
 
 </mapper>
