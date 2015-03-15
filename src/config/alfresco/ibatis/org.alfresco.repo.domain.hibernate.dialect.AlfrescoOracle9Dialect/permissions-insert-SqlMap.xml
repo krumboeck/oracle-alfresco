@@ -13,8 +13,8 @@
             (id, version, acl_id, latest, acl_version, inherits, inherits_from,
              type, inherited_acl, is_versioned, requires_version, acl_change_set)
         values
-            (#{id jdbcType=BIGINT}, #{version jdbcType=BIGINT}, #{aclId jdbcType=VARCHAR}, #{latest jdbcType=BIT}, #{aclVersion jdbcType=BIGINT}, #{inherits jdbcType=BIT}, #{inheritsFrom jdbcType=BIGINT},
-             #{type jdbcType=INTEGER}, #{inheritedAcl jdbcType=BIGINT}, #{isVersioned jdbcType=BIT}, #{requiresVersion jdbcType=BIT}, #{aclChangeSet jdbcType=BIGINT})
+            (#{id,jdbcType=BIGINT}, #{version,jdbcType=BIGINT}, #{aclId,jdbcType=VARCHAR}, #{latest,jdbcType=BIT}, #{aclVersion,jdbcType=BIGINT}, #{inherits,jdbcType=BIT}, #{inheritsFrom,jdbcType=BIGINT},
+             #{type,jdbcType=INTEGER}, #{inheritedAcl,jdbcType=BIGINT}, #{isVersioned,jdbcType=BIT}, #{requiresVersion,jdbcType=BIT}, #{aclChangeSet,jdbcType=BIGINT})
 
         
     </insert>
@@ -44,7 +44,7 @@
 		insert into alf_access_control_entry
             (id, version, permission_id, authority_id, allowed, applies, context_id)
         values
-            (#{id jdbcType=BIGINT}, #{version jdbcType=BIGINT}, #{permissionId jdbcType=BIGINT}, #{authorityId jdbcType=BIGINT}, #{allowed jdbcType=BIT}, #{applies jdbcType=INTEGER}, #{contextId jdbcType=BIGINT})        
+            (#{id,jdbcType=BIGINT}, #{version,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT}, #{allowed,jdbcType=BIT}, #{applies,jdbcType=INTEGER}, #{contextId,jdbcType=BIGINT})        
     </insert>
     
     <insert id="insert_AceContext" parameterType="AceContext">

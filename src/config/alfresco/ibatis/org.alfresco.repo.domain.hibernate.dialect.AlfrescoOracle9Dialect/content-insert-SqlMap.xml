@@ -11,7 +11,7 @@
         </selectKey>
         
         insert into alf_mimetype (id, version, mimetype_str)
-        values (#{id}, #{version}, lower(#{mimetype jdbcType=VARCHAR}))
+        values (#{id}, #{version}, lower(#{mimetype,jdbcType=VARCHAR}))
         
     </insert>
     
