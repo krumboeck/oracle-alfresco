@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.alfresco.org/repo/db-schema db-schema.xsd"
     name="" dbprefix="act_"
-    version="8004"
+    version="8009"
     tablecolumnorder="false">
   <validators>
     <validator class="org.alfresco.util.schemacomp.validator.NameValidator">
@@ -853,6 +853,11 @@
         <index name="ACT_IDX_HI_PROCVAR_PROC_INST" unique="false">
           <columnnames>
             <columnname>PROC_INST_ID_</columnname>
+          </columnnames>
+        </index>
+        <index name="ACT_IDX_HI_PROCVAR_TASK_ID" unique="false">
+          <columnnames>
+            <columnname>TASK_ID_</columnname>
           </columnnames>
         </index>
       </indexes>
