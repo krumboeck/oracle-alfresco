@@ -15,11 +15,11 @@ GPL
 
 Supported Alfresco Releases
 ---------------------------
-4.2.b
+4.2.c
 
 
 Building the AMP
 ----------------
     cd src
-    zip -r ../oracle-alfresco-4.2_b.amp *
+    zip -r ../oracle-alfresco-4.2_c.amp *
 
